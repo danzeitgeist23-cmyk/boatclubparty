@@ -318,6 +318,41 @@ body {
 }
 .qty-btn:hover { border-color: var(--gold); }
 
+/* ── Radio ── */
+.play-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gold);
+  color: #0A0A0F;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s, transform .1s;
+}
+.play-btn:hover { background: var(--gold-hover); transform: scale(1.06); }
+.play-btn-lg { width: 52px; height: 52px; }
+.mini-player {
+  position: fixed;
+  left: 18px; bottom: 18px;
+  z-index: 70;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  box-shadow: var(--card-shadow);
+  padding: 8px 12px 8px 16px;
+  max-width: min(320px, calc(100vw - 110px));
+}
+.live-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5)} }
+
 /* ── WhatsApp flotante ── */
 .wa-float {
   position: fixed;

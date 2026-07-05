@@ -1,5 +1,8 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
+import { RadioProvider } from './context/RadioContext'
+import MiniPlayer from './components/MiniPlayer'
+import MusicPage from './pages/public/MusicPage'
 import HomePage from './pages/public/HomePage'
 import AuthPage from './pages/public/AuthPage'
 import EventPage from './pages/public/EventPage'
@@ -39,8 +42,10 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <HashRouter>
+      <RadioProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/music" element={<MusicPage />} />
         <Route path="/events/:slug" element={<EventPage />} />
         <Route path="/djs" element={<DjsPage />} />
         <Route path="/blog" element={<BlogPage />} />
@@ -64,6 +69,8 @@ export default function App() {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <MiniPlayer />
+      </RadioProvider>
     </HashRouter>
   )
 }
