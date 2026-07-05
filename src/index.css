@@ -261,6 +261,8 @@ body {
   margin-bottom: 6px;
   text-transform: uppercase;
 }
+.form-row { display: grid; gap: 0 12px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+select.form-input { appearance: auto; }
 .link-btn {
   background: none;
   border: none;

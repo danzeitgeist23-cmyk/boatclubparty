@@ -12,8 +12,12 @@
 | Ruta | Página | Estado | Notas |
 |---|---|---|---|
 | `/` | HomePage | ✅ live (G) | OceanBeat completo: nav sticky, hero, countdown Atlantic/Canary, events (Supabase+fallback), gallery+lightbox, why us, reviews, check-in, FAQ+booking promise, newsletter→leads, footer, WhatsApp flotante. Fotos reales pendientes en `/public/assets/` (placeholders con ancla) |
-| `/music` | MusicPage | 🔜 I | Mixcloud embeds (user desde `settings.mixcloud_user`) + 2 radios en vivo (`radio_pure_url`, `radio_global_url`). Player persiste al navegar (vive en layout) |
-| `/gallery` | GalleryPage | 🔜 K | Fotos por evento + CTA "Get your photos" |
+| `/music` | MusicPage | ✅ live (I) | 2 radios Ibiza en vivo (URLs desde settings) + Mixcloud embeds (user + DJs). RadioContext a nivel App: el player persiste al navegar; MiniPlayer global |
+| `/events/:slug` | EventPage | ✅ live | Ficha: cover, géneros/BPM, lineup (event_djs), selector invitados, precio con descuento tier+family si hay sesión, book+share WhatsApp |
+| `/djs` | DjsPage | ✅ live | DJs activos con foto, tagline, Instagram/Mixcloud |
+| `/blog` | BlogPage | ✅ live | Estructura espejo de blog.html actual: categorías Todos/Destino/Música/Guías + estado vacío. Posts desde tabla `posts` |
+| `/blog/:slug` | PostPage | ✅ live | Artículo con markdown ligero + share WhatsApp |
+| `/gallery` | GalleryPage | 🔜 K | Fotos por evento + CTA "Get your photos" (hoy sección `#gallery` en home) |
 | `/media/:eventSlug` | EventMediaPage | 🔜 K | Venta fotos/vídeo: previews watermark + "Buy via WhatsApp" con mensaje prellenado |
 | `/family` | FamilyPage | 🔜 J | Landing Boat Club Family: perks, descuento permanente, CTA join |
 
@@ -32,7 +36,9 @@
 |---|---|---|---|
 | `/admin/login` | LoginPage | ✅ live | Supabase Auth. Será login compartido cliente/admin (checkpoint H) |
 | `/admin/dashboard` | DashboardPage | ✅ live → ampliar | Añadir revenue + nuevos usuarios |
-| `/admin/events` | EventsPage | ✅ live → ampliar | Hoy solo listado/sold-out; falta CRUD completo con form |
+| `/admin/events` | EventsPage | ✅ live | Listado + sold-out + delete |
+| `/admin/events/new` · `/admin/events/:id/edit` | EventFormPage | ✅ live | CRUD completo: barco/fiesta, fechas, precios, capacidad, géneros/BPM, cover, descripción y lineup de DJs (headliner/support) |
+| `/admin/djs` | DjsAdminPage | ✅ live | Alta/edición de DJs (foto, tagline, IG, Mixcloud) + mostrar/ocultar |
 | `/admin/customers` | CustomersPage | 🔜 H/J | Lista profiles + toggle Family + tier visible |
 | `/admin/media` | MediaAdminPage | 🔜 K | Upload a Storage (buckets `media`/`previews`), asignar evento, precio |
 | `/admin/connectors` | ConnectorsPage | 🔜 L | Editor de `settings`: GA4, Google Ads, Meta Pixel, WhatsApp, Mixcloud, radios, % Family |

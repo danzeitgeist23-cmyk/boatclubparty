@@ -13,6 +13,8 @@ import LoginPage from './pages/admin/LoginPage'
 import AdminLayout from './pages/admin/AdminLayout'
 import DashboardPage from './pages/admin/DashboardPage'
 import EventsPage from './pages/admin/EventsPage'
+import EventFormPage from './pages/admin/EventFormPage'
+import DjsAdminPage from './pages/admin/DjsAdminPage'
 import AccountLayout from './pages/account/AccountLayout'
 import AccountPage from './pages/account/AccountPage'
 import BookingsPage from './pages/account/BookingsPage'
@@ -66,6 +68,9 @@ export default function App() {
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="events" element={<EventsPage />} />
+          <Route path="events/new" element={<EventFormPage />} />
+          <Route path="events/:id/edit" element={<EventFormPage />} />
+          <Route path="djs" element={<DjsAdminPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
