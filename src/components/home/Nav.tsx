@@ -16,6 +16,7 @@ function AccountIcon() {
 // hash → sección de la home · path → página propia
 const LINKS = [
   { label: 'Events', hash: '#events' },
+  { label: 'Calendar', path: '/calendar' },
   { label: 'DJs', path: '/djs' },
   { label: 'Music', path: '/music' },
   { label: 'Blog', path: '/blog' },

@@ -2,7 +2,12 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import { RadioProvider } from './context/RadioContext'
 import MiniPlayer from './components/MiniPlayer'
+import TrackingScripts from './components/TrackingScripts'
 import MusicPage from './pages/public/MusicPage'
+import CalendarPage from './pages/public/CalendarPage'
+import ConnectorsPage from './pages/admin/ConnectorsPage'
+import MomentsAdminPage from './pages/admin/MomentsAdminPage'
+import MessagesAdminPage from './pages/admin/MessagesAdminPage'
 import HomePage from './pages/public/HomePage'
 import AuthPage from './pages/public/AuthPage'
 import EventPage from './pages/public/EventPage'
@@ -44,10 +49,12 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <HashRouter>
+      <TrackingScripts />
       <RadioProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/music" element={<MusicPage />} />
+        <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/events/:slug" element={<EventPage />} />
         <Route path="/djs" element={<DjsPage />} />
         <Route path="/blog" element={<BlogPage />} />
@@ -71,6 +78,9 @@ export default function App() {
           <Route path="events/new" element={<EventFormPage />} />
           <Route path="events/:id/edit" element={<EventFormPage />} />
           <Route path="djs" element={<DjsAdminPage />} />
+          <Route path="connectors" element={<ConnectorsPage />} />
+          <Route path="moments" element={<MomentsAdminPage />} />
+          <Route path="messages" element={<MessagesAdminPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

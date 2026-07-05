@@ -19,6 +19,9 @@ export default function AdminLayout() {
           <NavLink to="/admin/dashboard" style={linkStyle}>DASHBOARD</NavLink>
           <NavLink to="/admin/events" style={linkStyle}>EVENTS</NavLink>
           <NavLink to="/admin/djs" style={linkStyle}>DJS</NavLink>
+          <NavLink to="/admin/moments" style={linkStyle}>MOMENTS</NavLink>
+          <NavLink to="/admin/messages" style={linkStyle}>MESSAGES</NavLink>
+          <NavLink to="/admin/connectors" style={linkStyle}>CONNECTORS</NavLink>
           <ThemeToggle />
           <button className="btn-outline" style={{ padding: '6px 16px', fontSize: '.85rem' }} onClick={logout}>LOGOUT</button>
         </nav>

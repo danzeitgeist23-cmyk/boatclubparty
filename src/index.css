@@ -379,6 +379,46 @@ select.form-input { appearance: auto; }
 }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5)} }
 
+/* ── Calendario ── */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.cal-head {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: .15em;
+  font-size: .8rem;
+  color: var(--gold);
+  padding: 6px 0;
+}
+.cal-cell {
+  min-height: 74px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--bg-card);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cal-event {
+  display: block;
+  background: var(--gold);
+  color: #0A0A0F;
+  border-radius: 5px;
+  padding: 3px 6px;
+  text-decoration: none;
+  line-height: 1.15;
+  overflow: hidden;
+}
+.cal-event:hover { background: var(--gold-hover); }
+@media (max-width: 640px) {
+  .cal-cell { min-height: 54px; padding: 4px; }
+  .cal-event .bebas { font-size: .55rem !important; }
+}
+
 /* ── WhatsApp flotante ── */
 .wa-float {
   position: fixed;
