@@ -320,6 +320,21 @@ select.form-input { appearance: auto; }
 }
 .qty-btn:hover { border-color: var(--gold); }
 
+/* ── Badge tipo de evento (⚡ Day Blender / Golden Hour) ── */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 999px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .78rem;
+  letter-spacing: .12em;
+  padding: 4px 12px;
+}
+
 /* ── Radio ── */
 .play-btn {
   width: 34px; height: 34px;
@@ -334,6 +349,15 @@ select.form-input { appearance: auto; }
 }
 .play-btn:hover { background: var(--gold-hover); transform: scale(1.06); }
 .play-btn-lg { width: 52px; height: 52px; }
+.radio-logo {
+  height: 44px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #FFFFFF; /* los logos oficiales traen fondo propio; blanco neutro en ambos temas */
+  padding: 5px 8px;
+}
 .mini-player {
   position: fixed;
   left: 18px; bottom: 18px;

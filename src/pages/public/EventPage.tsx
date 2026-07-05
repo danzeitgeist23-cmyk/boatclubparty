@@ -4,11 +4,11 @@ import { supabase, type DjRow, type EventRow } from '../../lib/supabase'
 import { useSettings } from '../../hooks/useSettings'
 import { useAuth } from '../../hooks/useAuth'
 import { activeTier, totalDiscountPercent, discountedPrice, type Tier } from '../../lib/discounts'
-import { waLink } from '../../lib/whatsapp'
 import Nav from '../../components/home/Nav'
 import Footer from '../../components/home/Footer'
 import WhatsAppFloat from '../../components/home/WhatsAppFloat'
 import ShareButtons from '../../components/ShareButtons'
+import BookingForm from '../../components/BookingForm'
 import Img from '../../components/Img'
 
 type EventWithLineup = EventRow & {
@@ -21,7 +21,6 @@ export default function EventPage() {
   const { session, profile } = useAuth()
   const [event, setEvent] = useState<EventWithLineup | null | undefined>(undefined)
   const [tiers, setTiers] = useState<Tier[]>([])
-  const [qty, setQty] = useState(2)
 
   useEffect(() => {
     if (!slug) return
@@ -58,13 +57,9 @@ export default function EventPage() {
   const soldOut = event.status === 'sold_out'
   const base = Number(event.price_general)
   const unit = discount > 0 ? discountedPrice(base, discount) : base
-  const total = unit * qty
   const lineup = [...event.event_djs].sort((a, b) => a.sort - b.sort)
   const tierLabel = profile ? activeTier(tiers, profile.bookings_count)?.label : null
-
-  const waMsg = profile
-    ? `Hola! I'm ${profile.full_name ?? 'a member'}${tierLabel ? ` (${tierLabel}${profile.is_family ? ' + Family' : ''}, ${discount}% off)` : ''} — I want to book ${event.boat_name} (${event.date}) x${qty} → €${total.toFixed(0)} total 🚤`
-    : `Hola! I want to book ${event.boat_name} (${event.date}) x${qty} people 🚤`
+  const discountLabel = tierLabel ? `${tierLabel}${profile?.is_family ? ' + Family' : ''} −${discount}%` : undefined
 
   return (
     <div style={{ minHeight: '100vh' }}>
@@ -89,10 +84,16 @@ export default function EventPage() {
               {event.description ?? 'Open bar, live DJs and limited capacity on the Atlantic.'}
             </p>
 
-            {(event.genres || event.bpm) && (
-              <p style={{ margin: '0 0 22px', fontSize: '.9rem' }}>
+            {(event.event_type || event.genres || event.bpm) && (
+              <p style={{ margin: '0 0 22px', fontSize: '.9rem', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                {event.event_type && (
+                  <span className="type-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.5 13.5h5L9.5 22 19 10h-5.5z" /></svg>
+                    {event.event_type}
+                  </span>
+                )}
                 {event.genres && <span style={{ color: 'var(--text-primary)' }}>{event.genres}</span>}
-                {event.bpm && <span className="text-muted-c"> · {event.bpm} BPM</span>}
+                {event.bpm && <span className="text-muted-c">· {event.bpm} BPM</span>}
               </p>
             )}
 
@@ -130,26 +131,14 @@ export default function EventPage() {
               </div>
 
               {!soldOut && (
-                <>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '18px 0' }}>
-                    <span className="text-muted-c" style={{ fontSize: '.85rem' }}>Guests</span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button className="qty-btn" aria-label="Less" onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
-                      <span className="bebas" style={{ fontSize: '1.4rem', minWidth: 28, textAlign: 'center' }}>{qty}</span>
-                      <button className="qty-btn" aria-label="More" onClick={() => setQty(q => Math.min(20, q + 1))}>+</button>
-                    </div>
-                    <span className="bebas" style={{ marginLeft: 'auto', fontSize: '1.3rem' }}>€{total.toFixed(0)}</span>
-                  </div>
-                  <a className="btn-gold" style={{ width: '100%', textAlign: 'center', boxSizing: 'border-box' }}
-                    href={waLink(settings.whatsapp_number, waMsg)} target="_blank" rel="noreferrer">
-                    BOOK VIA WHATSAPP
-                  </a>
+                <div style={{ marginTop: 18 }}>
+                  <BookingForm event={event} unitPrice={unit} discountLabel={discountLabel} whatsapp={settings.whatsapp_number} />
                   {!session && (
                     <p className="text-muted-c" style={{ fontSize: '.78rem', margin: '10px 0 0' }}>
                       <Link to="/login" style={{ color: 'var(--gold)' }}>Sign in</Link> to unlock member discounts.
                     </p>
                   )}
-                </>
+                </div>
               )}
             </div>
 

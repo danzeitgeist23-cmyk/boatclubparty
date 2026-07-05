@@ -25,7 +25,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <Countdown events={events} />
-        <EventsSection events={events} loading={loading} whatsapp={whatsapp} />
+        <EventsSection events={events} loading={loading} />
         <GallerySection />
         <CrowdSlider />
         <WhyUs />

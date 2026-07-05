@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import type { EventRow } from '../../lib/supabase'
 import Img from '../Img'
 import Price from '../Price'
-import { waLink } from '../../lib/whatsapp'
 
 function durationHours(e: EventRow): number {
   const [h1, m1] = e.time_start.split(':').map(Number)
@@ -10,19 +9,19 @@ function durationHours(e: EventRow): number {
   return Math.max(0, Math.round((h2 * 60 + m2 - h1 * 60 - m1) / 60))
 }
 
-export default function EventsSection({ events, loading, whatsapp }: {
+export default function EventsSection({ events, loading }: {
   events: EventRow[]
   loading: boolean
-  whatsapp?: string
 }) {
   return (
     <section id="events" style={{ maxWidth: 1200, margin: '0 auto', padding: '70px 20px' }}>
+      <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.75rem', margin: '0 0 6px' }}>BOOK YOUR EXPERIENCE</p>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
         <span className="section-num">01</span>
         <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>Upcoming Events</h2>
       </div>
       <p className="text-muted-c" style={{ margin: '10px 0 32px', maxWidth: 520 }}>
-        Limited capacity. Every departure sells out — book early via WhatsApp.
+        Limited capacity. Every departure sells out — book early.
       </p>
 
       {loading ? (
@@ -31,7 +30,6 @@ export default function EventsSection({ events, loading, whatsapp }: {
         <div style={{ display: 'grid', gap: 24, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
           {events.map(e => {
             const soldOut = e.status === 'sold_out'
-            const msg = `Hola! I want to book ${e.boat_name} (${e.date}) x2 people 🚤`
             return (
               <article key={e.id} className="event-card">
                 <Link to={`/events/${e.slug}`} style={{ display: 'block', position: 'relative' }}>
@@ -41,24 +39,30 @@ export default function EventsSection({ events, loading, whatsapp }: {
                   </span>
                 </Link>
                 <div style={{ padding: '18px 18px 22px' }}>
+                  {e.event_type && (
+                    <span className="type-badge" style={{ marginBottom: 8 }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.5 13.5h5L9.5 22 19 10h-5.5z" /></svg>
+                      {e.event_type}
+                    </span>
+                  )}
                   <h3 className="bebas" style={{ fontSize: '1.6rem', margin: '0 0 2px' }}>
                     <Link to={`/events/${e.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{e.boat_name}</Link>
                   </h3>
                   <p className="text-muted-c" style={{ fontSize: '.85rem', margin: '0 0 10px' }}>
                     {e.description ?? 'Open bar · Live DJ · Atlantic sunset'}
                   </p>
-                  <p className="text-muted-c" style={{ fontSize: '.82rem', margin: '0 0 14px' }}>
-                    {e.date} · {e.time_start.slice(0, 5)}–{e.time_end.slice(0, 5)} · {e.marina}
+                  <p style={{ fontSize: '.82rem', margin: '0 0 14px' }}>
+                    <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{e.time_start.slice(0, 5)}–{e.time_end.slice(0, 5)}</span>
+                    <span className="text-muted-c"> · {e.date} · {e.marina}</span>
                   </p>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
                     <Price value={e.price_general} />
                     {soldOut ? (
                       <span className="bebas" style={{ color: 'var(--text-muted)', letterSpacing: '.1em' }}>SOLD OUT</span>
                     ) : (
-                      <a className="btn-gold" style={{ padding: '9px 18px', fontSize: '.9rem' }}
-                        href={waLink(whatsapp, msg)} target="_blank" rel="noreferrer">
-                        Book via WhatsApp
-                      </a>
+                      <Link className="btn-gold" style={{ padding: '9px 18px', fontSize: '.9rem' }} to={`/events/${e.slug}`}>
+                        Book Now
+                      </Link>
                     )}
                   </div>
                 </div>

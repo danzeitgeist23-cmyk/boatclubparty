@@ -30,9 +30,9 @@ export default function MusicPage() {
       .then(({ data }) => setDjs((data as DjRow[]) ?? []))
   }, [])
 
-  const stations: Station[] = [
-    { key: 'pure', name: 'Pure Ibiza Radio', url: settings.radio_pure_url ?? '' },
-    { key: 'global', name: 'Ibiza Global Radio', url: settings.radio_global_url ?? '' },
+  const stations: (Station & { logo: string })[] = [
+    { key: 'pure', name: 'Pure Ibiza Radio', url: settings.radio_pure_url ?? '', logo: '/assets/radios/pure-ibiza.webp' },
+    { key: 'global', name: 'Ibiza Global Radio', url: settings.radio_global_url ?? '', logo: '/assets/radios/ibiza-global.svg' },
   ].filter(s => s.url)
 
   // embeds: el user configurado + los mixcloud de los DJs (sin duplicados)
@@ -68,12 +68,13 @@ export default function MusicPage() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
                   )}
                 </button>
-                <div>
+                <div style={{ flex: 1 }}>
                   <p className="bebas" style={{ margin: 0, fontSize: '1.3rem' }}>{s.name}</p>
                   <p className="text-muted-c" style={{ margin: 0, fontSize: '.75rem', letterSpacing: '.12em' }}>
                     {active && radio.error ? 'STREAM ERROR — TRY AGAIN' : playing ? '● LIVE' : 'IBIZA · 24/7'}
                   </p>
                 </div>
+                <img src={s.logo} alt={`${s.name} logo`} className="radio-logo" loading="lazy" />
               </div>
             )
           })}

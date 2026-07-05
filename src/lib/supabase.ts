@@ -25,6 +25,7 @@ export type EventRow = {
   description: string | null
   genres: string | null
   bpm: string | null
+  event_type: string | null
 }
 
 export type DjRow = {

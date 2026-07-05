@@ -6,7 +6,7 @@ type Form = {
   boat_name: string; date: string; time_start: string; time_end: string
   marina: string; location: string
   price_general: string; price_vip: string; capacity: string
-  status: string; genres: string; bpm: string
+  status: string; genres: string; bpm: string; event_type: string
   cover_image: string; description: string
 }
 
@@ -14,7 +14,7 @@ const EMPTY: Form = {
   boat_name: '', date: '', time_start: '18:00', time_end: '22:00',
   marina: 'Puerto Rico Marina', location: 'Gran Canaria',
   price_general: '55', price_vip: '', capacity: '80',
-  status: 'available', genres: '', bpm: '', cover_image: '', description: '',
+  status: 'available', genres: '', bpm: '', event_type: '', cover_image: '', description: '',
 }
 
 type LineupState = Record<string, { selected: boolean; role: 'headliner' | 'support' }>
@@ -46,7 +46,7 @@ export default function EventFormPage() {
         marina: String(e.marina ?? ''), location: String(e.location ?? ''),
         price_general: String(e.price_general ?? ''), price_vip: e.price_vip == null ? '' : String(e.price_vip),
         capacity: String(e.capacity ?? '80'), status: String(e.status ?? 'available'),
-        genres: String(e.genres ?? ''), bpm: String(e.bpm ?? ''),
+        genres: String(e.genres ?? ''), bpm: String(e.bpm ?? ''), event_type: String(e.event_type ?? ''),
         cover_image: String(e.cover_image ?? ''), description: String(e.description ?? ''),
       })
       setLineup(Object.fromEntries(e.event_djs.map(l => [l.dj_id, { selected: true, role: l.role }])))
@@ -67,6 +67,7 @@ export default function EventFormPage() {
       price_vip: form.price_vip === '' ? null : Number(form.price_vip),
       capacity: Number(form.capacity), status: form.status,
       genres: form.genres || null, bpm: form.bpm || null,
+      event_type: form.event_type || null,
       cover_image: form.cover_image || null, description: form.description || null,
     }
 
@@ -131,6 +132,11 @@ export default function EventFormPage() {
         </div>
 
         <div className="form-row">
+          <div><label className="form-label">Experience type</label>
+            <input className="form-input" value={form.event_type} onChange={set('event_type')} placeholder="Day Blender · Golden Hour" list="event-types" />
+            <datalist id="event-types">
+              <option value="Day Blender" /><option value="Golden Hour" /><option value="Night Cruise" /><option value="Private Charter" />
+            </datalist></div>
           <div><label className="form-label">Genres</label>
             <input className="form-input" value={form.genres} onChange={set('genres')} placeholder="Tech House · Afro House" /></div>
           <div><label className="form-label">BPM</label>
