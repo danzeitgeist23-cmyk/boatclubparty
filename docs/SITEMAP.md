@@ -11,7 +11,7 @@
 
 | Ruta | Página | Estado | Notas |
 |---|---|---|---|
-| `/` | HomePage | 🚧 placeholder → 🔜 G | Rediseño OceanBeat completo: hero, countdown Atlantic/Canary, events, gallery, why us, reviews, check-in, FAQ, newsletter, footer |
+| `/` | HomePage | ✅ live (G) | OceanBeat completo: nav sticky, hero, countdown Atlantic/Canary, events (Supabase+fallback), gallery+lightbox, why us, reviews, check-in, FAQ+booking promise, newsletter→leads, footer, WhatsApp flotante. Fotos reales pendientes en `/public/assets/` (placeholders con ancla) |
 | `/music` | MusicPage | 🔜 I | Mixcloud embeds (user desde `settings.mixcloud_user`) + 2 radios en vivo (`radio_pure_url`, `radio_global_url`). Player persiste al navegar (vive en layout) |
 | `/gallery` | GalleryPage | 🔜 K | Fotos por evento + CTA "Get your photos" |
 | `/media/:eventSlug` | EventMediaPage | 🔜 K | Venta fotos/vídeo: previews watermark + "Buy via WhatsApp" con mensaje prellenado |

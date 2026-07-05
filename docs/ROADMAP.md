@@ -8,7 +8,7 @@
 |---|---|---|---|
 | A | Tema light/dark + scaffold + admin base | ✅ 2026-07-05 | Toggle funciona, persiste, cero colores hardcoded |
 | F | Migración v2/v2.1 + /docs | ✅ 2026-07-05 | Tablas creadas, RLS endurecida, SITEMAP/DATABASE reflejan realidad |
-| G | Home real OceanBeat (B–D del brief v1) | 🔜 siguiente | Hero, countdown Atlantic/Canary, events, gallery, reviews, FAQ, footer en ambos temas |
+| G | Home real OceanBeat (B–D del brief v1) | ✅ 2026-07-05 | Hero, countdown Atlantic/Canary, events, gallery, reviews, FAQ, footer en ambos temas |
 | H | Auth cliente + `/account/*` | 🔜 | Registro/login cliente, ProtectedRoute admin con check de rol, rewards calcula tier real desde DB |
 | I | `/music` | 🔜 | Mixcloud embeds + 2 radios; player no se corta al navegar (persiste en layout) |
 | J | `/family` + descuentos visibles | 🔜 | Landing + precio tachado/descuento dorado en cards con sesión + mensaje WhatsApp con tier |
