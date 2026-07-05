@@ -1,17 +1,5 @@
 import Img from '../Img'
-
-const SOCIALS = [
-  {
-    label: 'Instagram',
-    href: 'https://instagram.com/boatclubparty',
-    icon: <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" /></>,
-  },
-  {
-    label: 'TikTok',
-    href: 'https://tiktok.com/@boatclubparty',
-    icon: <path d="M15 4v9.5a4 4 0 1 1-4-4M15 4c.5 2.5 2 4 4.5 4.5" />,
-  },
-]
+import { SocialIcons } from './Footer'
 
 export default function Hero() {
   return (
@@ -33,12 +21,7 @@ export default function Hero() {
             <a className="btn-outline" href="#gallery">See the vibe</a>
           </div>
           <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginTop: 30 }}>
-            {SOCIALS.map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
-                style={{ color: 'var(--text-muted)', display: 'inline-flex' }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{s.icon}</svg>
-              </a>
-            ))}
+            <SocialIcons />
             <span className="bebas" style={{ marginLeft: 6, border: '1px solid var(--gold)', color: 'var(--gold)', borderRadius: 999, padding: '4px 14px', fontSize: '.85rem', letterSpacing: '.12em' }}>
               SINCE 2024
             </span>

@@ -5,6 +5,7 @@ import Hero from '../../components/home/Hero'
 import Countdown from '../../components/home/Countdown'
 import EventsSection from '../../components/home/EventsSection'
 import GallerySection from '../../components/home/GallerySection'
+import CrowdSlider from '../../components/home/CrowdSlider'
 import WhyUs from '../../components/home/WhyUs'
 import Reviews from '../../components/home/Reviews'
 import CheckIn from '../../components/home/CheckIn'
@@ -26,6 +27,7 @@ export default function HomePage() {
         <Countdown events={events} />
         <EventsSection events={events} loading={loading} whatsapp={whatsapp} />
         <GallerySection />
+        <CrowdSlider />
         <WhyUs />
         <Reviews />
         <CheckIn whatsapp={whatsapp} />

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from '../ThemeToggle'
 
 function AccountIcon() {
@@ -13,12 +13,26 @@ function AccountIcon() {
   )
 }
 
+// hash → sección de la home · path → página propia
 const LINKS = [
-  { label: 'Home', href: '#top' },
-  { label: 'Events', href: '#events' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
-]
+  { label: 'Events', hash: '#events' },
+  { label: 'DJs', path: '/djs' },
+  { label: 'Music', path: '/music' },
+  { label: 'Blog', path: '/blog' },
+  { label: 'Contact', hash: '#contact' },
+] as const
+
+function NavItem({ link, onClick, style }: { link: (typeof LINKS)[number]; onClick?: () => void; style?: React.CSSProperties }) {
+  const onHome = useLocation().pathname === '/'
+  if ('path' in link && link.path) {
+    return <Link to={link.path} className="nav-link" style={style} onClick={onClick}>{link.label}</Link>
+  }
+  const hash = 'hash' in link ? link.hash : '#top'
+  // fuera de la home, el ancla no existe: volvemos a la home
+  return onHome
+    ? <a href={hash} className="nav-link" style={style} onClick={onClick}>{link.label}</a>
+    : <Link to="/" className="nav-link" style={style} onClick={onClick}>{link.label}</Link>
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
@@ -32,9 +46,7 @@ export default function Nav() {
 
         {/* Desktop */}
         <div className="nav-desktop" style={{ alignItems: 'center', gap: 26 }}>
-          {LINKS.map(l => (
-            <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
-          ))}
+          {LINKS.map(l => <NavItem key={l.label} link={l} />)}
           {/* i18n fase 2 — estructura preparada, solo EN */}
           <span className="text-muted-c" style={{ fontSize: '.75rem', letterSpacing: '.15em', border: '1px solid var(--border-soft)', borderRadius: 4, padding: '4px 8px' }}>EN</span>
           <AccountIcon />
@@ -62,9 +74,7 @@ export default function Nav() {
       {open && (
         <div className="fade-up" style={{ borderTop: '1px solid var(--border-soft)', padding: '10px 20px 18px', display: 'flex', flexDirection: 'column', gap: 4 }}>
           {LINKS.map(l => (
-            <a key={l.href} href={l.href} className="nav-link" style={{ padding: '10px 0', fontSize: '1rem' }} onClick={() => setOpen(false)}>
-              {l.label}
-            </a>
+            <NavItem key={l.label} link={l} style={{ padding: '10px 0', fontSize: '1rem' }} onClick={() => setOpen(false)} />
           ))}
           <a className="btn-gold" href="#events" style={{ marginTop: 8, textAlign: 'center' }} onClick={() => setOpen(false)}>Book Now</a>
         </div>

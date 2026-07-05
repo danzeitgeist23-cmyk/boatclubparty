@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { EventRow } from '../../lib/supabase'
 import Img from '../Img'
 import Price from '../Price'
@@ -33,14 +34,16 @@ export default function EventsSection({ events, loading, whatsapp }: {
             const msg = `Hola! I want to book ${e.boat_name} (${e.date}) x2 people 🚤`
             return (
               <article key={e.id} className="event-card">
-                <div style={{ position: 'relative' }}>
+                <Link to={`/events/${e.slug}`} style={{ display: 'block', position: 'relative' }}>
                   <Img src={e.cover_image} alt={`${e.boat_name} boat party`} ratio="4/5" />
                   <span className="badge-live">
                     {soldOut ? 'SOLD OUT' : `LIVE · ${durationHours(e)}H ALL INCLUSIVE`}
                   </span>
-                </div>
+                </Link>
                 <div style={{ padding: '18px 18px 22px' }}>
-                  <h3 className="bebas" style={{ fontSize: '1.6rem', margin: '0 0 2px' }}>{e.boat_name}</h3>
+                  <h3 className="bebas" style={{ fontSize: '1.6rem', margin: '0 0 2px' }}>
+                    <Link to={`/events/${e.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{e.boat_name}</Link>
+                  </h3>
                   <p className="text-muted-c" style={{ fontSize: '.85rem', margin: '0 0 10px' }}>
                     {e.description ?? 'Open bar · Live DJ · Atlantic sunset'}
                   </p>
