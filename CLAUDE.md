@@ -19,6 +19,13 @@ SUPABASE_ANON_KEY:  (en .env local — NUNCA commitear)
 FOTOS REALES:       [ ] sí, en /public/assets/  [ ] no → usar placeholders
 ```
 
+**PASO -1 — CREAR REPO REMOTO (si no existe):**
+```bash
+gh auth status || gh auth login          # login GitHub si hace falta
+gh repo create boatclubparty --private --source=. --remote=origin --push
+```
+Si `gh` no está instalado: crear repo vacío en github.com y `git remote add origin ... && git push -u origin main`.
+
 **PASO 0 OBLIGATORIO antes de escribir una sola línea:** `git pull`, listar árbol real (`find src -type f`), leer `App.tsx`, `index.css` y `package.json` reales. Si algo difiere de este brief → reportar diferencias y esperar confirmación. El brief describe el estado esperado; **el repo es la verdad**.
 
 ---
