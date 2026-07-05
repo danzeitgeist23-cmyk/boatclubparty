@@ -21,9 +21,10 @@
 
 | Ruta | Página | Estado | Notas |
 |---|---|---|---|
-| `/account` | AccountPage | 🔜 H | Mis datos + WhatsApp (tabla `profiles`) |
-| `/account/bookings` | BookingsPage | 🔜 H | Mis reservas + estado (tickets con `user_id = auth.uid()`) |
-| `/account/rewards` | RewardsPage | 🔜 H | Tier actual (Sailor/Captain/Legend), progreso, % activo, badge Family |
+| `/login` | AuthPage | ✅ live (H) | Login + registro cliente (signUp con full_name → trigger crea profile). Con sesión redirige a /account |
+| `/account` | AccountPage | ✅ live (H) | Mis datos + WhatsApp (update en `profiles`) |
+| `/account/bookings` | BookingsPage | ✅ live (H) | Mis reservas + estado (tickets `user_id = auth.uid()` con join a events) |
+| `/account/rewards` | RewardsPage | ✅ live (H) | Tier real desde DB, progreso al siguiente, % combinado (tope 25%), badge Family |
 
 ## Admin (rol `admin` — check de rol vía `profiles.role`, no solo sesión)
 
@@ -39,4 +40,4 @@
 
 `*` → redirige a `/`.
 
-⚠️ Nota: el ProtectedRoute actual (`src/App.tsx`) solo comprueba sesión. En checkpoint H, cuando los clientes tengan login, debe comprobar `profiles.role === 'admin'` para `/admin/*` (la DB ya lo exige vía RLS desde la migración v2.1).
+Guard de `/admin/*`: `AdminRoute` (H) exige sesión + `profiles.role === 'admin'`; un customer rebota a `/account`. La DB lo exige igualmente vía RLS (`is_admin()`).

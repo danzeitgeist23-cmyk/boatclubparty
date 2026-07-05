@@ -237,6 +237,40 @@ body {
 .newsletter-input:focus { outline: none; border-color: var(--gold); }
 .newsletter-input::placeholder { color: var(--text-muted); }
 
+/* ── Formularios (auth + account) ── */
+.form-input {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: .95rem;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  transition: border-color .2s;
+}
+.form-input:focus { outline: none; border-color: var(--gold); }
+.form-input:disabled { opacity: .6; cursor: not-allowed; }
+.form-input::placeholder { color: var(--text-muted); }
+.form-label {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
 /* ── WhatsApp flotante ── */
 .wa-float {
   position: fixed;

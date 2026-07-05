@@ -1,11 +1,15 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { supabase } from './lib/supabase'
+import { useAuth } from './hooks/useAuth'
 import HomePage from './pages/public/HomePage'
+import AuthPage from './pages/public/AuthPage'
 import LoginPage from './pages/admin/LoginPage'
 import AdminLayout from './pages/admin/AdminLayout'
 import DashboardPage from './pages/admin/DashboardPage'
 import EventsPage from './pages/admin/EventsPage'
+import AccountLayout from './pages/account/AccountLayout'
+import AccountPage from './pages/account/AccountPage'
+import BookingsPage from './pages/account/BookingsPage'
+import RewardsPage from './pages/account/RewardsPage'
 
 function Loader() {
   return (
@@ -18,17 +22,13 @@ function Loader() {
   )
 }
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const [session, setSession] = useState<any>(undefined)
+// /admin/*: exige sesión Y rol admin (la DB lo exige igualmente vía RLS is_admin())
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const { session, profile, loading } = useAuth()
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSession(data.session))
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, s) => setSession(s))
-    return () => subscription.unsubscribe()
-  }, [])
-
-  if (session === undefined) return <Loader />
+  if (loading) return <Loader />
   if (!session) return <Navigate to="/admin/login" replace />
+  if (profile?.role !== 'admin') return <Navigate to="/account" replace />
   return <>{children}</>
 }
 
@@ -37,10 +37,18 @@ export default function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<AuthPage />} />
+
+        <Route path="/account" element={<AccountLayout />}>
+          <Route index element={<AccountPage />} />
+          <Route path="bookings" element={<BookingsPage />} />
+          <Route path="rewards" element={<RewardsPage />} />
+        </Route>
+
         <Route path="/admin/login" element={<LoginPage />} />
         <Route
           path="/admin"
-          element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}
+          element={<AdminRoute><AdminLayout /></AdminRoute>}
         >
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />

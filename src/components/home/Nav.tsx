@@ -1,5 +1,17 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import ThemeToggle from '../ThemeToggle'
+
+function AccountIcon() {
+  return (
+    <Link to="/account" aria-label="My account" className="theme-toggle" style={{ textDecoration: 'none' }}>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" />
+      </svg>
+    </Link>
+  )
+}
 
 const LINKS = [
   { label: 'Home', href: '#top' },
@@ -25,12 +37,14 @@ export default function Nav() {
           ))}
           {/* i18n fase 2 — estructura preparada, solo EN */}
           <span className="text-muted-c" style={{ fontSize: '.75rem', letterSpacing: '.15em', border: '1px solid var(--border-soft)', borderRadius: 4, padding: '4px 8px' }}>EN</span>
+          <AccountIcon />
           <ThemeToggle />
           <a className="btn-gold" href="#events" style={{ padding: '9px 22px', fontSize: '.95rem' }}>Book Now</a>
         </div>
 
         {/* Mobile */}
         <div className="nav-mobile" style={{ alignItems: 'center', gap: 10 }}>
+          <AccountIcon />
           <ThemeToggle />
           <button
             aria-label={open ? 'Close menu' : 'Open menu'}
