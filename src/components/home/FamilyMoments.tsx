@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
 import Img from '../Img'
+import { useT } from '../../i18n'
 
 type Moment = { id: string; image_url: string; caption: string | null }
 
@@ -8,6 +9,7 @@ type Moment = { id: string; image_url: string; caption: string | null }
 export default function FamilyMoments() {
   const track = useRef<HTMLDivElement>(null)
   const [moments, setMoments] = useState<Moment[]>([])
+  const { t } = useT()
 
   useEffect(() => {
     supabase.from('moments').select('id,image_url,caption').order('sort')
@@ -33,10 +35,10 @@ export default function FamilyMoments() {
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
           <span className="section-num">·</span>
-          <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>Boat Club Family Moments</h2>
+          <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>{t('moments.title')}</h2>
         </div>
         <p className="text-muted-c" style={{ margin: '10px 0 26px', maxWidth: 520 }}>
-          No stock photos. This is what our parties actually look like.
+          {t('moments.sub')}
         </p>
       </div>
       <div ref={track} className="crowd-track">

@@ -1,10 +1,22 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from '../ThemeToggle'
+import { useT, LANGS } from '../../i18n'
+import type { Lang } from '../../i18n/translations'
 
-function AccountIcon() {
+// tKey → etiqueta traducida · hash → sección de la home · path → página propia
+const LINKS = [
+  { tKey: 'nav.events', hash: '#events' },
+  { tKey: 'nav.calendar', path: '/calendar' },
+  { tKey: 'nav.djs', path: '/djs' },
+  { tKey: 'nav.music', path: '/music' },
+  { tKey: 'nav.blog', path: '/blog' },
+  { tKey: 'nav.contact', hash: '#contact' },
+] as const
+
+function AccountIcon({ label }: { label: string }) {
   return (
-    <Link to="/account" aria-label="My account" className="theme-toggle" style={{ textDecoration: 'none' }}>
+    <Link to="/account" aria-label={label} className="theme-toggle" style={{ textDecoration: 'none' }}>
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
         <circle cx="12" cy="8" r="4" />
         <path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" />
@@ -13,30 +25,37 @@ function AccountIcon() {
   )
 }
 
-// hash → sección de la home · path → página propia
-const LINKS = [
-  { label: 'Events', hash: '#events' },
-  { label: 'Calendar', path: '/calendar' },
-  { label: 'DJs', path: '/djs' },
-  { label: 'Music', path: '/music' },
-  { label: 'Blog', path: '/blog' },
-  { label: 'Contact', hash: '#contact' },
-] as const
+function LangSelect() {
+  const { lang, setLang } = useT()
+  return (
+    <select
+      aria-label="Language"
+      className="lang-select"
+      value={lang}
+      onChange={e => setLang(e.target.value as Lang)}
+    >
+      {LANGS.map(l => <option key={l.code} value={l.code}>{l.label}</option>)}
+    </select>
+  )
+}
 
 function NavItem({ link, onClick, style }: { link: (typeof LINKS)[number]; onClick?: () => void; style?: React.CSSProperties }) {
   const onHome = useLocation().pathname === '/'
+  const { t } = useT()
+  const label = t(link.tKey)
   if ('path' in link && link.path) {
-    return <Link to={link.path} className="nav-link" style={style} onClick={onClick}>{link.label}</Link>
+    return <Link to={link.path} className="nav-link" style={style} onClick={onClick}>{label}</Link>
   }
   const hash = 'hash' in link ? link.hash : '#top'
   // fuera de la home, el ancla no existe: volvemos a la home
   return onHome
-    ? <a href={hash} className="nav-link" style={style} onClick={onClick}>{link.label}</a>
-    : <Link to="/" className="nav-link" style={style} onClick={onClick}>{link.label}</Link>
+    ? <a href={hash} className="nav-link" style={style} onClick={onClick}>{label}</a>
+    : <Link to="/" className="nav-link" style={style} onClick={onClick}>{label}</Link>
 }
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const { t } = useT()
 
   return (
     <nav className="nav-blur" style={{ position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid var(--border-soft)' }}>
@@ -46,18 +65,18 @@ export default function Nav() {
         </a>
 
         {/* Desktop */}
-        <div className="nav-desktop" style={{ alignItems: 'center', gap: 26 }}>
-          {LINKS.map(l => <NavItem key={l.label} link={l} />)}
-          {/* i18n fase 2 — estructura preparada, solo EN */}
-          <span className="text-muted-c" style={{ fontSize: '.75rem', letterSpacing: '.15em', border: '1px solid var(--border-soft)', borderRadius: 4, padding: '4px 8px' }}>EN</span>
-          <AccountIcon />
+        <div className="nav-desktop" style={{ alignItems: 'center', gap: 22 }}>
+          {LINKS.map(l => <NavItem key={l.tKey} link={l} />)}
+          <LangSelect />
+          <AccountIcon label={t('nav.account')} />
           <ThemeToggle />
-          <a className="btn-gold" href="#events" style={{ padding: '9px 22px', fontSize: '.95rem' }}>Book Now</a>
+          <a className="btn-gold" href="#events" style={{ padding: '9px 22px', fontSize: '.95rem' }}>{t('nav.book')}</a>
         </div>
 
         {/* Mobile */}
         <div className="nav-mobile" style={{ alignItems: 'center', gap: 10 }}>
-          <AccountIcon />
+          <LangSelect />
+          <AccountIcon label={t('nav.account')} />
           <ThemeToggle />
           <button
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -75,9 +94,9 @@ export default function Nav() {
       {open && (
         <div className="fade-up" style={{ borderTop: '1px solid var(--border-soft)', padding: '10px 20px 18px', display: 'flex', flexDirection: 'column', gap: 4 }}>
           {LINKS.map(l => (
-            <NavItem key={l.label} link={l} style={{ padding: '10px 0', fontSize: '1rem' }} onClick={() => setOpen(false)} />
+            <NavItem key={l.tKey} link={l} style={{ padding: '10px 0', fontSize: '1rem' }} onClick={() => setOpen(false)} />
           ))}
-          <a className="btn-gold" href="#events" style={{ marginTop: 8, textAlign: 'center' }} onClick={() => setOpen(false)}>Book Now</a>
+          <a className="btn-gold" href="#events" style={{ marginTop: 8, textAlign: 'center' }} onClick={() => setOpen(false)}>{t('nav.book')}</a>
         </div>
       )}
     </nav>

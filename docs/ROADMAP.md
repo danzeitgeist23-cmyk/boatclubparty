@@ -24,7 +24,7 @@
 - Tickets con QR
 - N8N flujos: Gmail, Calendar, auto-post IG/FB, WhatsApp Cloud API
 - Telegram bot para Andrés (operaciones)
-- i18n EN/ES/DE (estructura preparada, solo EN en fase 1)
+- ~~i18n~~ ✅ adelantado a fase 1 (2026-07-07): EN/ES/IT/DE/NO/NL en toda la UI pública. Pendiente fase 2: traducir contenido de DB (artículos, descripciones de eventos)
 - Páginas `/events/:slug` con SEO (implicará migrar HashRouter → BrowserRouter + `_redirects` en Cloudflare Pages)
 - Membresía Boat Club Family de pago
 - Mover cálculo de descuentos a DB/edge function cuando exista checkout

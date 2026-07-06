@@ -5,6 +5,7 @@ import { useRadio, type Station } from '../../context/RadioContext'
 import Nav from '../../components/home/Nav'
 import Footer from '../../components/home/Footer'
 import WhatsAppFloat from '../../components/home/WhatsAppFloat'
+import { useT } from '../../i18n'
 
 function mixcloudEmbed(feed: string): string {
   return `https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=${encodeURIComponent(feed)}`
@@ -23,6 +24,7 @@ function mixcloudFeed(value: string): string {
 export default function MusicPage() {
   const settings = useSettings()
   const radio = useRadio()
+  const { t } = useT()
   const [djs, setDjs] = useState<DjRow[]>([])
 
   useEffect(() => {
@@ -45,14 +47,14 @@ export default function MusicPage() {
     <div style={{ minHeight: '100vh' }}>
       <Nav />
       <main style={{ maxWidth: 1100, margin: '0 auto', padding: '48px 20px 90px' }}>
-        <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', margin: 0 }}>🎧 THE SOUNDTRACK</p>
-        <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 8vw, 4.5rem)', margin: '10px 0 8px', lineHeight: .95 }}>Music & Radio</h1>
+        <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', margin: 0 }}>{t('music.kicker')}</p>
+        <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 8vw, 4.5rem)', margin: '10px 0 8px', lineHeight: .95 }}>{t('music.title')}</h1>
         <p className="text-muted-c" style={{ maxWidth: 520, margin: '0 0 36px' }}>
-          Ibiza live radio and our latest sessions. Press play — it keeps playing while you browse.
+          {t('music.sub')}
         </p>
 
         <h2 className="bebas" style={{ fontSize: '1.6rem', margin: '0 0 16px' }}>
-          <span style={{ color: 'var(--gold)', marginRight: 10 }}>01</span>Live Radio
+          <span style={{ color: 'var(--gold)', marginRight: 10 }}>01</span>{t('music.radio')}
         </h2>
         <div style={{ display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', marginBottom: 46 }}>
           {stations.map(s => {
@@ -71,7 +73,7 @@ export default function MusicPage() {
                 <div style={{ flex: 1 }}>
                   <p className="bebas" style={{ margin: 0, fontSize: '1.3rem' }}>{s.name}</p>
                   <p className="text-muted-c" style={{ margin: 0, fontSize: '.75rem', letterSpacing: '.12em' }}>
-                    {active && radio.error ? 'STREAM ERROR — TRY AGAIN' : playing ? '● LIVE' : 'IBIZA · 24/7'}
+                    {active && radio.error ? t('music.error') : playing ? `● ${t('music.liveNow')}` : t('music.live247')}
                   </p>
                 </div>
                 <img src={s.logo} alt={`${s.name} logo`} className="radio-logo" loading="lazy" />
@@ -81,7 +83,7 @@ export default function MusicPage() {
         </div>
 
         <h2 className="bebas" style={{ fontSize: '1.6rem', margin: '0 0 16px' }}>
-          <span style={{ color: 'var(--gold)', marginRight: 10 }}>02</span>Latest Sessions
+          <span style={{ color: 'var(--gold)', marginRight: 10 }}>02</span>{t('music.sessions')}
         </h2>
         <div style={{ display: 'grid', gap: 20 }}>
           {feeds.map(f => (
@@ -99,7 +101,7 @@ export default function MusicPage() {
               />
             </div>
           ))}
-          {feeds.length === 0 && <p className="text-muted-c">No sessions configured yet.</p>}
+          {feeds.length === 0 && <p className="text-muted-c">{t('music.none')}</p>}
         </div>
       </main>
       <Footer />

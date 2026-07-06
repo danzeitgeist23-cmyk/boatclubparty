@@ -237,6 +237,21 @@ body {
 .newsletter-input:focus { outline: none; border-color: var(--gold); }
 .newsletter-input::placeholder { color: var(--text-muted); }
 
+/* ── Selector de idioma ── */
+.lang-select {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  padding: 6px 4px;
+  cursor: pointer;
+}
+.lang-select:focus { outline: none; border-color: var(--gold); }
+.lang-select option { background: var(--bg-primary); color: var(--text-primary); }
+
 /* ── Formularios (auth + account) ── */
 .form-input {
   width: 100%;
@@ -378,6 +393,33 @@ select.form-input { appearance: auto; }
   animation: pulse 1.4s ease-in-out infinite;
 }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5)} }
+
+/* ── CTA del blog ── */
+.blog-cta {
+  margin-top: 40px;
+  background: var(--gold);
+  border-radius: 14px;
+  padding: 30px 26px;
+  text-align: center;
+}
+.blog-cta-btn {
+  display: inline-block;
+  background: #0A0A0F;
+  color: #FFFFFF;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .1em;
+  padding: 11px 26px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: transform .12s;
+}
+.blog-cta-btn:hover { transform: translateY(-2px); }
+.blog-cta-btn-outline {
+  background: transparent;
+  color: #0A0A0F;
+  border: 2px solid #0A0A0F;
+}
 
 /* ── Calendario ── */
 .cal-grid {

@@ -10,6 +10,7 @@ import WhatsAppFloat from '../../components/home/WhatsAppFloat'
 import ShareButtons from '../../components/ShareButtons'
 import BookingForm from '../../components/BookingForm'
 import Img from '../../components/Img'
+import { useT } from '../../i18n'
 
 type EventWithLineup = EventRow & {
   event_djs: { role: 'headliner' | 'support'; sort: number; djs: DjRow | null }[]
@@ -18,6 +19,7 @@ type EventWithLineup = EventRow & {
 export default function EventPage() {
   const { slug } = useParams()
   const settings = useSettings()
+  const { t } = useT()
   const { session, profile } = useAuth()
   const [event, setEvent] = useState<EventWithLineup | null | undefined>(undefined)
   const [tiers, setTiers] = useState<Tier[]>([])
@@ -41,14 +43,14 @@ export default function EventPage() {
     return totalDiscountPercent(tier?.percent ?? 0, familyPercent)
   }, [profile, tiers, settings.family_discount_percent])
 
-  if (event === undefined) return <div style={{ minHeight: '100vh' }}><Nav /><p className="text-muted-c" style={{ padding: 40, textAlign: 'center' }}>Loading event…</p></div>
+  if (event === undefined) return <div style={{ minHeight: '100vh' }}><Nav /><p className="text-muted-c" style={{ padding: 40, textAlign: 'center' }}>{t('event.loading')}</p></div>
   if (event === null) {
     return (
       <div style={{ minHeight: '100vh' }}>
         <Nav />
         <div style={{ padding: '80px 20px', textAlign: 'center' }}>
-          <h1 className="bebas" style={{ fontSize: '2rem' }}>Event not found</h1>
-          <Link className="btn-gold" to="/">Back to home</Link>
+          <h1 className="bebas" style={{ fontSize: '2rem' }}>{t('event.notFound')}</h1>
+          <Link className="btn-gold" to="/">{t('event.backHome')}</Link>
         </div>
       </div>
     )
@@ -65,7 +67,7 @@ export default function EventPage() {
     <div style={{ minHeight: '100vh' }}>
       <Nav />
       <main style={{ maxWidth: 1100, margin: '0 auto', padding: '30px 20px 70px' }}>
-        <Link to="/" className="nav-link" style={{ fontSize: '.85rem' }}>← All events</Link>
+        <Link to="/" className="nav-link" style={{ fontSize: '.85rem' }}>{t('event.all')}</Link>
 
         <div className="event-detail-grid" style={{ marginTop: 18 }}>
           <div style={{ borderRadius: 12, overflow: 'hidden' }}>
@@ -73,7 +75,7 @@ export default function EventPage() {
           </div>
 
           <div>
-            {soldOut && <span className="badge-live" style={{ position: 'static', display: 'inline-block', marginBottom: 12 }}>SOLD OUT</span>}
+            {soldOut && <span className="badge-live" style={{ position: 'static', display: 'inline-block', marginBottom: 12 }}>{t('events.soldout')}</span>}
             <p style={{ color: 'var(--gold)', letterSpacing: '.22em', fontSize: '.75rem', margin: 0 }}>
               {event.date} · {event.time_start.slice(0, 5)}–{event.time_end.slice(0, 5)} · {event.marina}
             </p>
@@ -81,7 +83,7 @@ export default function EventPage() {
               {event.boat_name}
             </h1>
             <p className="text-muted-c" style={{ margin: '0 0 18px', lineHeight: 1.6 }}>
-              {event.description ?? 'Open bar, live DJs and limited capacity on the Atlantic.'}
+              {event.description ?? t('events.fallbackDesc')}
             </p>
 
             {(event.event_type || event.genres || event.bpm) && (
@@ -99,7 +101,7 @@ export default function EventPage() {
 
             {lineup.length > 0 && (
               <div style={{ marginBottom: 26 }}>
-                <p className="bebas" style={{ letterSpacing: '.15em', margin: '0 0 12px', fontSize: '1.05rem' }}>LINEUP</p>
+                <p className="bebas" style={{ letterSpacing: '.15em', margin: '0 0 12px', fontSize: '1.05rem' }}>{t('event.lineup')}</p>
                 <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                   {lineup.map(l => l.djs && (
                     <Link key={l.djs.id} to="/djs" style={{ textDecoration: 'none', color: 'inherit', textAlign: 'center', width: 92 }}>
@@ -127,7 +129,7 @@ export default function EventPage() {
                 ) : (
                   <span className="bebas" style={{ color: 'var(--gold)', fontSize: '2rem' }}>€{base.toFixed(0)}</span>
                 )}
-                <span className="text-muted-c" style={{ fontSize: '.85rem' }}>per person · open bar included</span>
+                <span className="text-muted-c" style={{ fontSize: '.85rem' }}>{t('event.perPerson')}</span>
               </div>
 
               {!soldOut && (
@@ -135,7 +137,7 @@ export default function EventPage() {
                   <BookingForm event={event} unitPrice={unit} discountLabel={discountLabel} whatsapp={settings.whatsapp_number} />
                   {!session && (
                     <p className="text-muted-c" style={{ fontSize: '.78rem', margin: '10px 0 0' }}>
-                      <Link to="/login" style={{ color: 'var(--gold)' }}>Sign in</Link> to unlock member discounts.
+                      <Link to="/login" style={{ color: 'var(--gold)' }}>{t('event.signin1')}</Link> {t('event.signin2')}
                     </p>
                   )}
                 </div>

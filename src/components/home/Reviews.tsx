@@ -1,3 +1,5 @@
+import { useT } from '../../i18n'
+
 const REVIEWS = [
   { name: 'Sophie', origin: 'United Kingdom', text: 'Best day of our holiday. Open bar was actually unlimited and the sunset from the deck is unreal.' },
   { name: 'Lukas', origin: 'Germany', text: 'Booked for my stag do — 12 of us. The crew treated us like VIPs and the DJ read the crowd perfectly.' },
@@ -14,19 +16,20 @@ function Star() {
 }
 
 export default function Reviews() {
+  const { t } = useT()
   return (
     <section id="reviews" className="bg-secondary-c" style={{ padding: '70px 20px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
           <span className="section-num">04</span>
-          <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>What people say</h2>
+          <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>{t('reviews.title')}</h2>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '22px 0 30px', flexWrap: 'wrap' }}>
           <span className="bebas" style={{ fontSize: '3.4rem', lineHeight: 1, color: 'var(--gold)' }}>4.9</span>
           <div>
             <div style={{ display: 'flex', gap: 2 }}>{[...Array(5)].map((_, i) => <Star key={i} />)}</div>
-            <p className="text-muted-c" style={{ margin: '4px 0 0', fontSize: '.85rem' }}>Google Reviews</p>
+            <p className="text-muted-c" style={{ margin: '4px 0 0', fontSize: '.85rem' }}>{t('reviews.google')}</p>
           </div>
         </div>
 

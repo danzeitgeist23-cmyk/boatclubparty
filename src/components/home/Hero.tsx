@@ -1,24 +1,25 @@
 import Img from '../Img'
 import { SocialIcons } from './Footer'
+import { useT } from '../../i18n'
 
 export default function Hero() {
+  const { t } = useT()
   return (
     <header id="top" style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 20px 32px', position: 'relative' }}>
       <div className="hero-grid">
         <div>
           <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', fontWeight: 600, margin: 0 }}>
-            GRAN CANARIA · ATLANTIC VIP PARTIES
+            {t('hero.tagline')}
           </p>
           <h1 className="bebas" style={{ fontSize: 'clamp(3.4rem, 11vw, 7rem)', lineHeight: .95, margin: '14px 0 18px' }}>
             Boat Club<br />Party.
           </h1>
           <p className="text-muted-c" style={{ maxWidth: 480, fontSize: '1.05rem', lineHeight: 1.6, margin: '0 0 26px' }}>
-            Open bar, live DJs and limited capacity on the Atlantic.
-            Four hours you will never forget — and photos to prove it.
+            {t('hero.sub')}
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a className="btn-gold" href="#events">Book Now</a>
-            <a className="btn-outline" href="#gallery">See the vibe</a>
+            <a className="btn-gold" href="#events">{t('hero.book')}</a>
+            <a className="btn-outline" href="#gallery">{t('hero.vibe')}</a>
           </div>
           <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginTop: 30 }}>
             <SocialIcons />

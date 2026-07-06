@@ -5,10 +5,12 @@ import Nav from '../../components/home/Nav'
 import Footer from '../../components/home/Footer'
 import WhatsAppFloat from '../../components/home/WhatsAppFloat'
 import Img from '../../components/Img'
+import { useT } from '../../i18n'
 
 export default function DjsPage() {
   const [djs, setDjs] = useState<DjRow[] | null>(null)
   const settings = useSettings()
+  const { t } = useT()
 
   useEffect(() => {
     supabase.from('djs').select('*').order('name')
@@ -19,14 +21,14 @@ export default function DjsPage() {
     <div style={{ minHeight: '100vh' }}>
       <Nav />
       <main style={{ maxWidth: 1100, margin: '0 auto', padding: '48px 20px 70px' }}>
-        <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', margin: 0 }}>THE SOUND OF THE ATLANTIC</p>
-        <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 8vw, 4.5rem)', margin: '10px 0 8px', lineHeight: .95 }}>Our DJs</h1>
+        <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', margin: 0 }}>{t('djs.kicker')}</p>
+        <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 8vw, 4.5rem)', margin: '10px 0 8px', lineHeight: .95 }}>{t('djs.title')}</h1>
         <p className="text-muted-c" style={{ maxWidth: 520, margin: '0 0 36px' }}>
-          Residents and guests who make every departure a festival. Want to play on board? Write us.
+          {t('djs.sub')}
         </p>
 
         {djs === null ? (
-          <p className="text-muted-c">Loading…</p>
+          <p className="text-muted-c">{t('djs.loading')}</p>
         ) : (
           <div style={{ display: 'grid', gap: 24, gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))' }}>
             {djs.map(dj => (

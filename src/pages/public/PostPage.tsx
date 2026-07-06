@@ -7,6 +7,8 @@ import Footer from '../../components/home/Footer'
 import WhatsAppFloat from '../../components/home/WhatsAppFloat'
 import ShareButtons from '../../components/ShareButtons'
 import Img from '../../components/Img'
+import { waLink } from '../../lib/whatsapp'
+import { useT } from '../../i18n'
 
 // Markdown ligero sin dependencias: ## títulos, **negrita**, párrafos
 function renderContent(md: string): ReactNode[] {
@@ -23,6 +25,7 @@ function renderContent(md: string): ReactNode[] {
 export default function PostPage() {
   const { slug } = useParams()
   const settings = useSettings()
+  const { t } = useT()
   const [post, setPost] = useState<PostRow | null | undefined>(undefined)
 
   useEffect(() => {
@@ -35,12 +38,12 @@ export default function PostPage() {
     <div style={{ minHeight: '100vh' }}>
       <Nav />
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '36px 20px 70px' }}>
-        <Link to="/blog" className="nav-link" style={{ fontSize: '.85rem' }}>← Blog & Noticias</Link>
-        {post === undefined && <p className="text-muted-c" style={{ marginTop: 30 }}>Cargando…</p>}
+        <Link to="/blog" className="nav-link" style={{ fontSize: '.85rem' }}>{t('blog.back')}</Link>
+        {post === undefined && <p className="text-muted-c" style={{ marginTop: 30 }}>{t('blog.loading')}</p>}
         {post === null && (
           <div style={{ marginTop: 30 }}>
-            <h1 className="bebas" style={{ fontSize: '2rem' }}>Artículo no encontrado</h1>
-            <Link className="btn-gold" to="/blog">Volver al blog</Link>
+            <h1 className="bebas" style={{ fontSize: '2rem' }}>{t('blog.notFound')}</h1>
+            <Link className="btn-gold" to="/blog">{t('blog.backBtn')}</Link>
           </div>
         )}
         {post && (
@@ -55,7 +58,25 @@ export default function PostPage() {
               </div>
             )}
             {post.content && renderContent(post.content)}
-            <div style={{ marginTop: 34 }}>
+
+            {/* CTA de reserva al final de cada artículo */}
+            <div className="blog-cta">
+              <p className="bebas" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', margin: 0, letterSpacing: '.05em', color: '#0A0A0F' }}>
+                {t('blog.ctaTitle')}
+              </p>
+              <p style={{ margin: '8px 0 18px', color: '#0A0A0F', opacity: .85, fontSize: '.95rem' }}>
+                {t('blog.ctaText')}
+              </p>
+              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Link to="/" className="blog-cta-btn">{t('blog.ctaBook')}</Link>
+                <a className="blog-cta-btn blog-cta-btn-outline" target="_blank" rel="noreferrer"
+                  href={waLink(settings.whatsapp_number, `Hola! ${post.title} 🚤`)}>
+                  {t('blog.ctaWa')}
+                </a>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 30 }}>
               <ShareButtons title={`${post.title} · Boat Club Party`} />
             </div>
           </article>

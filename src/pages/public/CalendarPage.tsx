@@ -5,11 +5,11 @@ import { useSettings } from '../../hooks/useSettings'
 import Nav from '../../components/home/Nav'
 import Footer from '../../components/home/Footer'
 import WhatsAppFloat from '../../components/home/WhatsAppFloat'
-
-const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+import { useT } from '../../i18n'
 
 export default function CalendarPage() {
   const settings = useSettings()
+  const { t, lang } = useT()
   const [events, setEvents] = useState<EventRow[]>([])
   const [cursor, setCursor] = useState(() => { const d = new Date(); return { y: d.getFullYear(), m: d.getMonth() } })
 
@@ -40,7 +40,12 @@ export default function CalendarPage() {
     return map
   }, [events, monthKey])
 
-  const monthName = new Date(cursor.y, cursor.m, 1).toLocaleString('en', { month: 'long' })
+  // días de la semana y nombre de mes en el idioma activo, empezando en lunes
+  const days = useMemo(() => {
+    const fmt = new Intl.DateTimeFormat(lang, { weekday: 'short' })
+    return Array.from({ length: 7 }, (_, i) => fmt.format(new Date(2024, 0, i + 1))) // 2024-01-01 = lunes
+  }, [lang])
+  const monthName = new Date(cursor.y, cursor.m, 1).toLocaleString(lang, { month: 'long' })
   const today = new Date()
   const isToday = (d: number) => today.getFullYear() === cursor.y && today.getMonth() === cursor.m && today.getDate() === d
 
@@ -48,10 +53,10 @@ export default function CalendarPage() {
     <div style={{ minHeight: '100vh' }}>
       <Nav />
       <main style={{ maxWidth: 1000, margin: '0 auto', padding: '48px 20px 80px' }}>
-        <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', margin: 0 }}>PARTY ALMANAC</p>
-        <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 8vw, 4rem)', margin: '10px 0 8px', lineHeight: .95 }}>Calendar</h1>
+        <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.78rem', margin: 0 }}>{t('cal.kicker')}</p>
+        <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 8vw, 4rem)', margin: '10px 0 8px', lineHeight: .95 }}>{t('cal.title')}</h1>
         <p className="text-muted-c" style={{ maxWidth: 520, margin: '0 0 30px' }}>
-          Every departure at a glance. Gold days = party days. Tap one to book.
+          {t('cal.sub')}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
@@ -63,7 +68,7 @@ export default function CalendarPage() {
         </div>
 
         <div className="cal-grid">
-          {DAYS.map(d => <div key={d} className="cal-head">{d}</div>)}
+          {days.map(d => <div key={d} className="cal-head">{d}</div>)}
           {grid.map((d, i) => (
             <div key={i} className="cal-cell" style={d && isToday(d) ? { borderColor: 'var(--gold)' } : undefined}>
               {d && <span className="text-muted-c" style={{ fontSize: '.72rem' }}>{d}</span>}
@@ -72,7 +77,7 @@ export default function CalendarPage() {
                   <span className="bebas" style={{ fontSize: '.72rem', letterSpacing: '.05em' }}>
                     {e.time_start.slice(0, 5)} {e.boat_name}
                   </span>
-                  {e.status === 'sold_out' && <span style={{ fontSize: '.58rem', color: 'var(--orange)' }}> FULL</span>}
+                  {e.status === 'sold_out' && <span style={{ fontSize: '.58rem', color: 'var(--orange)' }}> {t('cal.full')}</span>}
                 </Link>
               ))}
             </div>

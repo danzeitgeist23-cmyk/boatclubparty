@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import type { EventRow } from '../../lib/supabase'
 import Img from '../Img'
 import Price from '../Price'
+import { useT } from '../../i18n'
 
 function durationHours(e: EventRow): number {
   const [h1, m1] = e.time_start.split(':').map(Number)
@@ -13,19 +14,20 @@ export default function EventsSection({ events, loading }: {
   events: EventRow[]
   loading: boolean
 }) {
+  const { t } = useT()
   return (
     <section id="events" style={{ maxWidth: 1200, margin: '0 auto', padding: '70px 20px' }}>
-      <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.75rem', margin: '0 0 6px' }}>BOOK YOUR EXPERIENCE</p>
+      <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.75rem', margin: '0 0 6px' }}>{t('events.kicker')}</p>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
         <span className="section-num">01</span>
-        <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>Upcoming Events</h2>
+        <h2 className="bebas" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', margin: 0 }}>{t('events.title')}</h2>
       </div>
       <p className="text-muted-c" style={{ margin: '10px 0 32px', maxWidth: 520 }}>
-        Limited capacity. Every departure sells out — book early.
+        {t('events.sub')}
       </p>
 
       {loading ? (
-        <p className="text-muted-c">Loading events…</p>
+        <p className="text-muted-c">{t('events.loading')}</p>
       ) : (
         <div style={{ display: 'grid', gap: 24, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
           {events.map(e => {
@@ -35,7 +37,7 @@ export default function EventsSection({ events, loading }: {
                 <Link to={`/events/${e.slug}`} style={{ display: 'block', position: 'relative' }}>
                   <Img src={e.cover_image} alt={`${e.boat_name} boat party`} ratio="4/5" />
                   <span className="badge-live">
-                    {soldOut ? 'SOLD OUT' : `LIVE · ${durationHours(e)}H ALL INCLUSIVE`}
+                    {soldOut ? t('events.soldout') : t('events.live', { h: durationHours(e) })}
                   </span>
                 </Link>
                 <div style={{ padding: '18px 18px 22px' }}>
@@ -49,7 +51,7 @@ export default function EventsSection({ events, loading }: {
                     <Link to={`/events/${e.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{e.boat_name}</Link>
                   </h3>
                   <p className="text-muted-c" style={{ fontSize: '.85rem', margin: '0 0 10px' }}>
-                    {e.description ?? 'Open bar · Live DJ · Atlantic sunset'}
+                    {e.description ?? t('events.fallbackDesc')}
                   </p>
                   <p style={{ fontSize: '.82rem', margin: '0 0 14px' }}>
                     <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{e.time_start.slice(0, 5)}–{e.time_end.slice(0, 5)}</span>
@@ -58,10 +60,10 @@ export default function EventsSection({ events, loading }: {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
                     <Price value={e.price_general} />
                     {soldOut ? (
-                      <span className="bebas" style={{ color: 'var(--text-muted)', letterSpacing: '.1em' }}>SOLD OUT</span>
+                      <span className="bebas" style={{ color: 'var(--text-muted)', letterSpacing: '.1em' }}>{t('events.soldout')}</span>
                     ) : (
                       <Link className="btn-gold" style={{ padding: '9px 18px', fontSize: '.9rem' }} to={`/events/${e.slug}`}>
-                        Book Now
+                        {t('events.book')}
                       </Link>
                     )}
                   </div>

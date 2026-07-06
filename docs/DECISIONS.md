@@ -2,6 +2,7 @@
 
 > Formato: fecha · qué · por qué. Solo se añade, nunca se reescribe historia.
 
+- **2026-07-07 · i18n propio sin librerías: EN/ES/IT/DE/NO/NL** · Diccionario plano en `src/i18n/translations.ts` + contexto `LangProvider` con `t(key, params)`, selector en la nav, persistencia en localStorage (`bcp-lang`) y detección del idioma del navegador. Solo UI: el contenido de DB (eventos, artículos) se muestra tal cual — traducir contenido dinámico queda para fase 2 si hace falta. Añadir un idioma = un objeto más en translations.ts.
 - **2026-07-07 · Primer deploy a producción: SiteGround, subida manual de `dist/`** · La web vive en `public_html` de SiteGround (subida vía File Manager/FTP; la web anterior quedó en `_web_antigua/`). Verificado desde fuera: bundle nuevo servido, assets 200, Supabase conectado. Flujo de deploy actual: `npm run build` → subir contenido de `dist/`. Pendiente de decidir: migrar a Cloudflare Pages con auto-deploy por push (era el plan del brief v1).
 
 - **2026-07-04 · HashRouter en vez de BrowserRouter** · Cloudflare Pages sirve SPA sin config de rewrites; `/#/ruta` evita 404 en deep links. Revisable en fase 2 (SEO de /events/:slug pedirá BrowserRouter + `_redirects`).

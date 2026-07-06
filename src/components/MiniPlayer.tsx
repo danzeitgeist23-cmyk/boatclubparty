@@ -1,8 +1,10 @@
 import { useRadio } from '../context/RadioContext'
+import { useT } from '../i18n'
 
 // Barra global: visible mientras haya una emisora seleccionada, en cualquier ruta
 export default function MiniPlayer() {
   const { station, playing, error, toggle, stop } = useRadio()
+  const { t } = useT()
   if (!station) return null
 
   return (
@@ -13,7 +15,7 @@ export default function MiniPlayer() {
           {station.name}
         </p>
         <p className="text-muted-c" style={{ margin: 0, fontSize: '.65rem', letterSpacing: '.15em' }}>
-          {error ? 'STREAM ERROR' : playing ? 'LIVE NOW' : 'PAUSED'}
+          {error ? t('music.error') : playing ? t('music.liveNow') : t('music.paused')}
         </p>
       </div>
       <button className="play-btn" onClick={toggle} aria-label={playing ? 'Pause' : 'Play'}>

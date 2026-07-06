@@ -1,6 +1,7 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import { RadioProvider } from './context/RadioContext'
+import { LangProvider } from './i18n'
 import MiniPlayer from './components/MiniPlayer'
 import TrackingScripts from './components/TrackingScripts'
 import MusicPage from './pages/public/MusicPage'
@@ -49,6 +50,7 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <HashRouter>
+      <LangProvider>
       <TrackingScripts />
       <RadioProvider>
       <Routes>
@@ -86,6 +88,7 @@ export default function App() {
       </Routes>
       <MiniPlayer />
       </RadioProvider>
+      </LangProvider>
     </HashRouter>
   )
 }

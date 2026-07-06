@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSettings } from '../../hooks/useSettings'
+import { useT } from '../../i18n'
 
 export function SocialIcons({ size = 20 }: { size?: number }) {
   const s = useSettings()
@@ -26,6 +27,7 @@ export function SocialIcons({ size = 20 }: { size?: number }) {
 
 export default function Footer() {
   const s = useSettings()
+  const { t } = useT()
   const email = s.contact_email || 'info@boatclubparty.com'
 
   return (
@@ -34,31 +36,31 @@ export default function Footer() {
         <div>
           <p className="bebas" style={{ fontSize: '1.4rem', color: 'var(--gold)', margin: '0 0 10px' }}>BOAT CLUB PARTY</p>
           <p className="text-muted-c" style={{ fontSize: '.88rem', lineHeight: 1.7, margin: '0 0 14px' }}>
-            VIP boat parties on the Atlantic.<br />
+            {t('footer.tagline')}<br />
             Puerto Rico Marina, Gran Canaria<br />
             <a href={`mailto:${email}`} className="nav-link" style={{ fontSize: '.88rem' }}>{email}</a>
           </p>
           <SocialIcons />
         </div>
         <div>
-          <p className="bebas" style={{ letterSpacing: '.1em', margin: '0 0 12px' }}>EVENTS</p>
+          <p className="bebas" style={{ letterSpacing: '.1em', margin: '0 0 12px' }}>{t('footer.events')}</p>
           <ul className="footer-list">
-            <li><a href="/#/" className="nav-link">Upcoming events</a></li>
-            <li><Link to="/djs" className="nav-link">Our DJs</Link></li>
-            <li><Link to="/music" className="nav-link">Music & Radio</Link></li>
+            <li><a href="/#/" className="nav-link">{t('footer.upcoming')}</a></li>
+            <li><Link to="/djs" className="nav-link">{t('footer.djs')}</Link></li>
+            <li><Link to="/music" className="nav-link">{t('footer.music')}</Link></li>
           </ul>
         </div>
         <div>
-          <p className="bebas" style={{ letterSpacing: '.1em', margin: '0 0 12px' }}>COMPANY</p>
+          <p className="bebas" style={{ letterSpacing: '.1em', margin: '0 0 12px' }}>{t('footer.company')}</p>
           <ul className="footer-list">
-            <li><Link to="/blog" className="nav-link">Blog & Noticias</Link></li>
-            <li><Link to="/login" className="nav-link">My account</Link></li>
-            <li><a href="/#/" className="nav-link">Contact</a></li>
+            <li><Link to="/blog" className="nav-link">{t('footer.blog')}</Link></li>
+            <li><Link to="/login" className="nav-link">{t('footer.account')}</Link></li>
+            <li><a href="/#/" className="nav-link">{t('footer.contact')}</a></li>
           </ul>
         </div>
       </div>
       <p className="text-muted-c" style={{ textAlign: 'center', fontSize: '.75rem', marginTop: 40 }}>
-        © {new Date().getFullYear()} Boat Club Party · Gran Canaria · All rights reserved
+        © {new Date().getFullYear()} Boat Club Party · Gran Canaria · {t('footer.rights')}
       </p>
     </footer>
   )

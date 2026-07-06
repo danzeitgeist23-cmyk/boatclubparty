@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { EventRow } from '../../lib/supabase'
+import { useT } from '../../i18n'
 
 // ── Timezone Atlantic/Canary sin librerías ──
 // El bug histórico (00:00:00) venía de interpretar date+time en la TZ del navegador.
@@ -30,6 +31,7 @@ function split(diff: number) {
 }
 
 export default function Countdown({ events }: { events: EventRow[] }) {
+  const { t } = useT()
   const [now, setNow] = useState(() => Date.now())
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function Countdown({ events }: { events: EventRow[] }) {
     <section id="countdown" className="bg-secondary-c" style={{ padding: '42px 20px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '22px 46px' }}>
         <div style={{ textAlign: 'center' }}>
-          <p style={{ color: 'var(--gold)', letterSpacing: '.22em', fontSize: '.72rem', margin: '0 0 4px' }}>NEXT PARTY SETS SAIL IN</p>
+          <p style={{ color: 'var(--gold)', letterSpacing: '.22em', fontSize: '.72rem', margin: '0 0 4px' }}>{t('countdown.next')}</p>
           <p className="bebas" style={{ fontSize: '1.5rem', margin: 0 }}>{next.boat_name} · {next.date}</p>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
