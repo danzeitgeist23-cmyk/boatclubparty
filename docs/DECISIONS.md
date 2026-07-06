@@ -2,6 +2,8 @@
 
 > Formato: fecha · qué · por qué. Solo se añade, nunca se reescribe historia.
 
+- **2026-07-07 · Primer deploy a producción: SiteGround, subida manual de `dist/`** · La web vive en `public_html` de SiteGround (subida vía File Manager/FTP; la web anterior quedó en `_web_antigua/`). Verificado desde fuera: bundle nuevo servido, assets 200, Supabase conectado. Flujo de deploy actual: `npm run build` → subir contenido de `dist/`. Pendiente de decidir: migrar a Cloudflare Pages con auto-deploy por push (era el plan del brief v1).
+
 - **2026-07-04 · HashRouter en vez de BrowserRouter** · Cloudflare Pages sirve SPA sin config de rewrites; `/#/ruta` evita 404 en deep links. Revisable en fase 2 (SEO de /events/:slug pedirá BrowserRouter + `_redirects`).
 - **2026-07-04 · Tailwind v4 con `@theme inline` en index.css, sin tailwind.config** · Es el patrón nativo de v4; todo el theming vive en CSS variables (`:root`/`.dark`), cero colores hardcoded en JSX.
 - **2026-07-04 · Tema light por defecto + toggle dark** · Nueva dirección visual estilo OceanBeat; los briefs antiguos "dark/gold" quedan anulados.

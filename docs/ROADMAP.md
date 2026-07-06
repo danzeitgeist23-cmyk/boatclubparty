@@ -29,6 +29,11 @@
 - Membresía Boat Club Family de pago
 - Mover cálculo de descuentos a DB/edge function cuando exista checkout
 
+## Producción
+
+- 🟢 **EN VIVO desde 2026-07-07**: https://boatclubparty.com (SiteGround, subida manual de `dist/`)
+- Deploy futuro: regenerar `dist/` y subir su contenido, o migrar a Cloudflare Pages (auto-deploy)
+
 ## Deuda técnica conocida
 
 - Falta admin de posts del blog (tabla y RLS listas; hoy se insertan por SQL) → juntar con checkpoint L o K
