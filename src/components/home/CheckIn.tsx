@@ -1,8 +1,10 @@
 import { waLink } from '../../lib/whatsapp'
 import { useT } from '../../i18n'
+import { useSettings } from '../../hooks/useSettings'
 
 export default function CheckIn({ whatsapp }: { whatsapp?: string }) {
   const { t } = useT()
+  const settings = useSettings()
   const steps = [
     { num: '01', title: t('checkin.t1'), text: t('checkin.x1') },
     { num: '02', title: t('checkin.t2'), text: t('checkin.x2') },
@@ -32,7 +34,7 @@ export default function CheckIn({ whatsapp }: { whatsapp?: string }) {
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 36 }}>
         <a className="btn-outline" href="https://maps.google.com/?q=Puerto+Rico+Marina,+Gran+Canaria" target="_blank" rel="noreferrer">{t('checkin.maps')}</a>
         <a className="btn-gold" href={waLink(whatsapp, 'Hola! I have a question about Boat Club Party 🚤')} target="_blank" rel="noreferrer">{t('checkin.wa')}</a>
-        <a className="btn-outline" href="mailto:owawild23@gmail.com">{t('checkin.email')}</a>
+        <a className="btn-outline" href={`mailto:${settings.contact_email || 'info@boatclubparty.com'}`}>{t('checkin.email')}</a>
       </div>
     </section>
   )
