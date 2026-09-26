@@ -4,7 +4,7 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../hooks/useAuth'
 import { useT } from '../../i18n'
 
-type Mode = 'login' | 'register'
+type Mode = 'login' | 'register' | 'forgot'
 
 export default function AuthPage() {
   const { session, loading } = useAuth()
@@ -16,13 +16,22 @@ export default function AuthPage() {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   const [confirmSent, setConfirmSent] = useState(false)
+  const [resetSent, setResetSent] = useState(false)
 
   if (!loading && session) return <Navigate to="/account" replace />
 
   async function submit(e: FormEvent) {
     e.preventDefault()
     setBusy(true); setError('')
-    if (mode === 'login') {
+    if (mode === 'forgot') {
+      // Supabase redirige aquí con el token de recuperación — lo captura
+      // ResetPasswordGate (montado a nivel App) vía onAuthStateChange.
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/',
+      })
+      if (error) setError(error.message)
+      else setResetSent(true)
+    } else if (mode === 'login') {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) setError(error.message)
     } else {
@@ -44,7 +53,7 @@ export default function AuthPage() {
           BOAT CLUB PARTY
         </Link>
         <p className="text-muted-c" style={{ textAlign: 'center', margin: '0 0 26px', fontSize: '.9rem' }}>
-          {mode === 'login' ? t('auth.back') : t('auth.join')}
+          {mode === 'login' ? t('auth.back') : mode === 'register' ? t('auth.join') : t('auth.forgotSub')}
         </p>
 
         {confirmSent ? (
@@ -52,6 +61,13 @@ export default function AuthPage() {
             <p className="bebas" style={{ fontSize: '1.3rem', color: 'var(--gold)', margin: '0 0 8px' }}>{t('auth.checkTitle')}</p>
             <p className="text-muted-c" style={{ margin: 0, fontSize: '.9rem' }}>
               {t('auth.checkText', { email })}
+            </p>
+          </div>
+        ) : resetSent ? (
+          <div className="event-card fade-up" style={{ padding: 24, textAlign: 'center', cursor: 'default' }}>
+            <p className="bebas" style={{ fontSize: '1.3rem', color: 'var(--gold)', margin: '0 0 8px' }}>{t('auth.checkTitle')}</p>
+            <p className="text-muted-c" style={{ margin: 0, fontSize: '.9rem' }}>
+              {t('auth.forgotSentText', { email })}
             </p>
           </div>
         ) : (
@@ -62,26 +78,38 @@ export default function AuthPage() {
             )}
             <input className="form-input" value={email} onChange={e => setEmail(e.target.value)}
               placeholder={t('auth.email')} type="email" autoComplete="email" required />
-            <input className="form-input" value={password} onChange={e => setPassword(e.target.value)}
-              placeholder={t('auth.pass')} type="password"
-              autoComplete={mode === 'login' ? 'current-password' : 'new-password'} minLength={6} required />
+            {mode !== 'forgot' && (
+              <input className="form-input" value={password} onChange={e => setPassword(e.target.value)}
+                placeholder={t('auth.pass')} type="password"
+                autoComplete={mode === 'login' ? 'current-password' : 'new-password'} minLength={6} required />
+            )}
+            {mode === 'login' && (
+              <p style={{ textAlign: 'right', margin: '-10px 0 14px' }}>
+                <button type="button" className="link-btn" style={{ fontSize: '.82rem' }}
+                  onClick={() => { setMode('forgot'); setError('') }}>{t('auth.forgot')}</button>
+              </p>
+            )}
             {error && <p style={{ color: 'var(--orange)', fontSize: '.85rem', margin: '0 0 12px' }}>{error}</p>}
             <button className="btn-gold" style={{ width: '100%' }} type="submit" disabled={busy}>
-              {busy ? t('auth.wait') : mode === 'login' ? t('auth.signin') : t('auth.create')}
+              {busy ? t('auth.wait') : mode === 'login' ? t('auth.signin') : mode === 'register' ? t('auth.create') : t('auth.forgotSend')}
             </button>
           </form>
         )}
 
-        {!confirmSent && (
+        {!confirmSent && !resetSent && (
           <p className="text-muted-c" style={{ textAlign: 'center', fontSize: '.85rem', marginTop: 18 }}>
-            {mode === 'login' ? (
+            {mode === 'login' && (
               <>{t('auth.no')}{' '}
                 <button className="link-btn" onClick={() => { setMode('register'); setError('') }}>{t('auth.joinLink')}</button>
               </>
-            ) : (
+            )}
+            {mode === 'register' && (
               <>{t('auth.yes')}{' '}
                 <button className="link-btn" onClick={() => { setMode('login'); setError('') }}>{t('auth.signinLink')}</button>
               </>
+            )}
+            {mode === 'forgot' && (
+              <button className="link-btn" onClick={() => { setMode('login'); setError('') }}>{t('auth.signinLink')}</button>
             )}
           </p>
         )}

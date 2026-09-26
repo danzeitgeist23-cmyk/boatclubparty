@@ -4,6 +4,7 @@ import { RadioProvider } from './context/RadioContext'
 import { LangProvider } from './i18n'
 import MiniPlayer from './components/MiniPlayer'
 import TrackingScripts from './components/TrackingScripts'
+import ResetPasswordGate from './components/ResetPasswordGate'
 import MusicPage from './pages/public/MusicPage'
 import CalendarPage from './pages/public/CalendarPage'
 import ConnectorsPage from './pages/admin/ConnectorsPage'
@@ -52,6 +53,7 @@ export default function App() {
     <HashRouter>
       <LangProvider>
       <TrackingScripts />
+      <ResetPasswordGate />
       <RadioProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />

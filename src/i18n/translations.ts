@@ -68,6 +68,9 @@ const en: Record<string, string> = {
   'auth.signin': 'SIGN IN', 'auth.create': 'CREATE ACCOUNT', 'auth.wait': 'ONE MOMENT…',
   'auth.no': 'No account yet?', 'auth.joinLink': 'Join the club', 'auth.yes': 'Already a member?', 'auth.signinLink': 'Sign in',
   'auth.checkTitle': 'CHECK YOUR EMAIL ⚓', 'auth.checkText': 'We sent a confirmation link to {email}. Click it and come back to sign in.',
+  'auth.forgot': 'Forgot your password?', 'auth.forgotSub': "No worries — we'll send you a reset link",
+  'auth.forgotSend': 'SEND RESET LINK', 'auth.forgotSentText': "We sent a password reset link to {email}. Click it, set a new password, and you're back in.",
+  'auth.resetTitle': 'SET A NEW PASSWORD', 'auth.resetNew': 'New password', 'auth.resetSave': 'SAVE PASSWORD', 'auth.resetOk': 'Password updated ⚓ Taking you in…',
 }
 
 const es: Record<string, string> = {
@@ -137,6 +140,9 @@ const es: Record<string, string> = {
   'auth.signin': 'ENTRAR', 'auth.create': 'CREAR CUENTA', 'auth.wait': 'UN MOMENTO…',
   'auth.no': '¿Aún no tienes cuenta?', 'auth.joinLink': 'Únete al club', 'auth.yes': '¿Ya eres socio?', 'auth.signinLink': 'Inicia sesión',
   'auth.checkTitle': 'REVISA TU CORREO ⚓', 'auth.checkText': 'Hemos enviado un enlace de confirmación a {email}. Haz clic y vuelve para iniciar sesión.',
+  'auth.forgot': '¿Olvidaste tu contraseña?', 'auth.forgotSub': 'Tranquilo — te enviamos un enlace para restablecerla',
+  'auth.forgotSend': 'ENVIAR ENLACE', 'auth.forgotSentText': 'Hemos enviado un enlace para restablecer tu contraseña a {email}. Haz clic, elige una nueva y listo.',
+  'auth.resetTitle': 'ESTABLECE UNA NUEVA CONTRASEÑA', 'auth.resetNew': 'Nueva contraseña', 'auth.resetSave': 'GUARDAR CONTRASEÑA', 'auth.resetOk': 'Contraseña actualizada ⚓ Entrando…',
 }
 
 const it: Record<string, string> = {
@@ -206,6 +212,9 @@ const it: Record<string, string> = {
   'auth.signin': 'ACCEDI', 'auth.create': 'CREA ACCOUNT', 'auth.wait': 'UN ATTIMO…',
   'auth.no': 'Non hai un account?', 'auth.joinLink': 'Unisciti al club', 'auth.yes': 'Sei già socio?', 'auth.signinLink': 'Accedi',
   'auth.checkTitle': 'CONTROLLA LA TUA EMAIL ⚓', 'auth.checkText': 'Abbiamo inviato un link di conferma a {email}. Cliccalo e torna per accedere.',
+  'auth.forgot': 'Password dimenticata?', 'auth.forgotSub': "Nessun problema — ti mandiamo un link per reimpostarla",
+  'auth.forgotSend': 'INVIA IL LINK', 'auth.forgotSentText': 'Abbiamo inviato un link per reimpostare la password a {email}. Cliccalo, scegline una nuova ed è fatta.',
+  'auth.resetTitle': 'IMPOSTA UNA NUOVA PASSWORD', 'auth.resetNew': 'Nuova password', 'auth.resetSave': 'SALVA PASSWORD', 'auth.resetOk': 'Password aggiornata ⚓ Ti stiamo facendo accedere…',
 }
 
 const de: Record<string, string> = {
@@ -275,6 +284,9 @@ const de: Record<string, string> = {
   'auth.signin': 'ANMELDEN', 'auth.create': 'KONTO ERSTELLEN', 'auth.wait': 'EINEN MOMENT…',
   'auth.no': 'Noch kein Konto?', 'auth.joinLink': 'Tritt dem Club bei', 'auth.yes': 'Schon Mitglied?', 'auth.signinLink': 'Anmelden',
   'auth.checkTitle': 'PRÜFE DEINE E-MAILS ⚓', 'auth.checkText': 'Wir haben einen Bestätigungslink an {email} gesendet. Klick ihn an und komm zurück zum Anmelden.',
+  'auth.forgot': 'Passwort vergessen?', 'auth.forgotSub': 'Kein Problem — wir schicken dir einen Link zum Zurücksetzen',
+  'auth.forgotSend': 'LINK SENDEN', 'auth.forgotSentText': 'Wir haben einen Link zum Zurücksetzen des Passworts an {email} gesendet. Klick ihn an, wähle ein neues Passwort und du bist wieder drin.',
+  'auth.resetTitle': 'NEUES PASSWORT FESTLEGEN', 'auth.resetNew': 'Neues Passwort', 'auth.resetSave': 'PASSWORT SPEICHERN', 'auth.resetOk': 'Passwort aktualisiert ⚓ Du wirst angemeldet…',
 }
 
 const no: Record<string, string> = {
@@ -344,6 +356,9 @@ const no: Record<string, string> = {
   'auth.signin': 'LOGG INN', 'auth.create': 'OPPRETT KONTO', 'auth.wait': 'ET ØYEBLIKK…',
   'auth.no': 'Har du ikke konto?', 'auth.joinLink': 'Bli med i klubben', 'auth.yes': 'Allerede medlem?', 'auth.signinLink': 'Logg inn',
   'auth.checkTitle': 'SJEKK E-POSTEN DIN ⚓', 'auth.checkText': 'Vi sendte en bekreftelseslenke til {email}. Klikk på den og kom tilbake for å logge inn.',
+  'auth.forgot': 'Glemt passordet?', 'auth.forgotSub': 'Ingen krise — vi sender deg en lenke for å nullstille det',
+  'auth.forgotSend': 'SEND LENKE', 'auth.forgotSentText': 'Vi sendte en lenke for å nullstille passordet til {email}. Klikk på den, velg et nytt, og du er inne igjen.',
+  'auth.resetTitle': 'VELG NYTT PASSORD', 'auth.resetNew': 'Nytt passord', 'auth.resetSave': 'LAGRE PASSORD', 'auth.resetOk': 'Passord oppdatert ⚓ Logger deg inn…',
 }
 
 const nl: Record<string, string> = {
@@ -413,6 +428,9 @@ const nl: Record<string, string> = {
   'auth.signin': 'INLOGGEN', 'auth.create': 'ACCOUNT AANMAKEN', 'auth.wait': 'MOMENTJE…',
   'auth.no': 'Nog geen account?', 'auth.joinLink': 'Word lid van de club', 'auth.yes': 'Al lid?', 'auth.signinLink': 'Log in',
   'auth.checkTitle': 'CHECK JE E-MAIL ⚓', 'auth.checkText': 'We hebben een bevestigingslink gestuurd naar {email}. Klik erop en kom terug om in te loggen.',
+  'auth.forgot': 'Wachtwoord vergeten?', 'auth.forgotSub': 'Geen zorgen — we sturen je een link om het opnieuw in te stellen',
+  'auth.forgotSend': 'LINK VERSTUREN', 'auth.forgotSentText': 'We hebben een link om je wachtwoord opnieuw in te stellen gestuurd naar {email}. Klik erop, kies een nieuw wachtwoord en je bent weer binnen.',
+  'auth.resetTitle': 'NIEUW WACHTWOORD INSTELLEN', 'auth.resetNew': 'Nieuw wachtwoord', 'auth.resetSave': 'WACHTWOORD OPSLAAN', 'auth.resetOk': 'Wachtwoord bijgewerkt ⚓ Je wordt ingelogd…',
 }
 
 export const TRANSLATIONS: Record<Lang, Record<string, string>> = { en, es, it, de, no, nl }
