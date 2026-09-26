@@ -17,6 +17,7 @@ import DjsPage from './pages/public/DjsPage'
 import BlogPage from './pages/public/BlogPage'
 import PostPage from './pages/public/PostPage'
 import FamilyPage from './pages/public/FamilyPage'
+import MediaPage from './pages/public/MediaPage'
 import LoginPage from './pages/admin/LoginPage'
 import AdminLayout from './pages/admin/AdminLayout'
 import DashboardPage from './pages/admin/DashboardPage'
@@ -65,6 +66,7 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<PostPage />} />
         <Route path="/family" element={<FamilyPage />} />
+        <Route path="/media/:slug" element={<MediaPage />} />
         <Route path="/login" element={<AuthPage />} />
 
         <Route path="/account" element={<AccountLayout />}>

@@ -47,6 +47,7 @@ export default function CalendarPage() {
   }, [lang])
   const monthName = new Date(cursor.y, cursor.m, 1).toLocaleString(lang, { month: 'long' })
   const today = new Date()
+  const todayIso = today.toISOString().slice(0, 10)
   const isToday = (d: number) => today.getFullYear() === cursor.y && today.getMonth() === cursor.m && today.getDate() === d
 
   return (
@@ -72,14 +73,17 @@ export default function CalendarPage() {
           {grid.map((d, i) => (
             <div key={i} className="cal-cell" style={d && isToday(d) ? { borderColor: 'var(--gold)' } : undefined}>
               {d && <span className="text-muted-c" style={{ fontSize: '.72rem' }}>{d}</span>}
-              {d && (byDay[d] ?? []).map(e => (
-                <Link key={e.id} to={`/events/${e.slug}`} className="cal-event" title={`${e.boat_name} · ${e.time_start.slice(0, 5)}`}>
-                  <span className="bebas" style={{ fontSize: '.72rem', letterSpacing: '.05em' }}>
-                    {e.time_start.slice(0, 5)} {e.boat_name}
-                  </span>
-                  {e.status === 'sold_out' && <span style={{ fontSize: '.58rem', color: 'var(--orange)' }}> {t('cal.full')}</span>}
-                </Link>
-              ))}
+              {d && (byDay[d] ?? []).map(e => {
+                const isPast = e.date < todayIso
+                return (
+                  <Link key={e.id} to={isPast ? `/media/${e.slug}` : `/events/${e.slug}`} className="cal-event" title={`${e.boat_name} · ${e.time_start.slice(0, 5)}${isPast ? ` · ${t('media.cta')}` : ''}`}>
+                    <span className="bebas" style={{ fontSize: '.72rem', letterSpacing: '.05em' }}>
+                      {e.time_start.slice(0, 5)} {e.boat_name}{isPast ? ' 📸' : ''}
+                    </span>
+                    {e.status === 'sold_out' && !isPast && <span style={{ fontSize: '.58rem', color: 'var(--orange)' }}> {t('cal.full')}</span>}
+                  </Link>
+                )
+              })}
             </div>
           ))}
         </div>

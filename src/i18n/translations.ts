@@ -83,6 +83,12 @@ const en: Record<string, string> = {
   'family.alreadyTitle': "You're already in the family 🎉", 'family.alreadyText': 'Every booking already includes your {percent}% Family discount, on top of your loyalty tier.',
   'family.loginCta': 'Sign in to join', 'family.loginSub': 'Create an account or sign in — it takes 10 seconds.',
   'family.viewRewards': 'View my rewards',
+  'media.kicker': 'EVENT GALLERY', 'media.title': 'Get your photos',
+  'media.sub': 'Relive {event} in high resolution — pick what you want and grab it via WhatsApp.',
+  'media.back': '← Back to {event}', 'media.buy': 'Buy via WhatsApp',
+  'media.typePack': 'Photo Pack', 'media.typeVideo': 'Video', 'media.typeSingle': 'Single Photo',
+  'media.emptyTitle': 'Photos coming soon', 'media.emptyText': 'Check back after the party — we upload them within a few days.',
+  'media.loading': 'Loading…', 'media.cta': 'Get your photos',
 }
 
 const es: Record<string, string> = {
@@ -167,6 +173,12 @@ const es: Record<string, string> = {
   'family.alreadyTitle': 'Ya eres parte de la family 🎉', 'family.alreadyText': 'Cada reserva ya incluye tu {percent}% de descuento Family, sumado a tu tier de fidelidad.',
   'family.loginCta': 'Inicia sesión para unirte', 'family.loginSub': 'Crea una cuenta o inicia sesión — tarda 10 segundos.',
   'family.viewRewards': 'Ver mis recompensas',
+  'media.kicker': 'GALERÍA DEL EVENTO', 'media.title': 'Consigue tus fotos',
+  'media.sub': 'Revive {event} en alta resolución — elige lo que quieras y consíguelo por WhatsApp.',
+  'media.back': '← Volver a {event}', 'media.buy': 'Comprar por WhatsApp',
+  'media.typePack': 'Pack de fotos', 'media.typeVideo': 'Vídeo', 'media.typeSingle': 'Foto individual',
+  'media.emptyTitle': 'Fotos muy pronto', 'media.emptyText': 'Vuelve después de la fiesta — las subimos en pocos días.',
+  'media.loading': 'Cargando…', 'media.cta': 'Consigue tus fotos',
 }
 
 const it: Record<string, string> = {
@@ -251,6 +263,12 @@ const it: Record<string, string> = {
   'family.alreadyTitle': 'Fai già parte della family 🎉', 'family.alreadyText': 'Ogni prenotazione include già il tuo sconto Family del {percent}%, sommato al tuo tier di fedeltà.',
   'family.loginCta': 'Accedi per unirti', 'family.loginSub': 'Crea un account o accedi — bastano 10 secondi.',
   'family.viewRewards': 'Vedi i miei premi',
+  'media.kicker': "GALLERIA DELL'EVENTO", 'media.title': 'Ottieni le tue foto',
+  'media.sub': 'Rivivi {event} in alta risoluzione — scegli quello che vuoi e ottienilo su WhatsApp.',
+  'media.back': '← Torna a {event}', 'media.buy': 'Acquista su WhatsApp',
+  'media.typePack': 'Pacchetto foto', 'media.typeVideo': 'Video', 'media.typeSingle': 'Foto singola',
+  'media.emptyTitle': 'Foto in arrivo', 'media.emptyText': 'Torna dopo la festa — le carichiamo entro pochi giorni.',
+  'media.loading': 'Caricamento…', 'media.cta': 'Ottieni le tue foto',
 }
 
 const de: Record<string, string> = {
@@ -335,6 +353,12 @@ const de: Record<string, string> = {
   'family.alreadyTitle': 'Du bist schon Teil der Family 🎉', 'family.alreadyText': 'Jede Buchung enthält bereits deinen {percent}% Family-Rabatt, zusätzlich zu deiner Treuestufe.',
   'family.loginCta': 'Zum Beitreten anmelden', 'family.loginSub': 'Erstelle ein Konto oder melde dich an — dauert 10 Sekunden.',
   'family.viewRewards': 'Meine Prämien ansehen',
+  'media.kicker': 'EVENT-GALERIE', 'media.title': 'Hol dir deine Fotos',
+  'media.sub': 'Erlebe {event} in hoher Auflösung noch einmal — wähle aus, was du willst, und hol es dir über WhatsApp.',
+  'media.back': '← Zurück zu {event}', 'media.buy': 'Über WhatsApp kaufen',
+  'media.typePack': 'Foto-Paket', 'media.typeVideo': 'Video', 'media.typeSingle': 'Einzelfoto',
+  'media.emptyTitle': 'Fotos kommen bald', 'media.emptyText': 'Schau nach der Party wieder vorbei — wir laden sie innerhalb weniger Tage hoch.',
+  'media.loading': 'Wird geladen…', 'media.cta': 'Hol dir deine Fotos',
 }
 
 const no: Record<string, string> = {
@@ -419,6 +443,12 @@ const no: Record<string, string> = {
   'family.alreadyTitle': 'Du er allerede en del av family 🎉', 'family.alreadyText': 'Hver bestilling inkluderer allerede din {percent}% Family-rabatt, i tillegg til lojalitetsnivået ditt.',
   'family.loginCta': 'Logg inn for å bli med', 'family.loginSub': 'Opprett en konto eller logg inn — tar 10 sekunder.',
   'family.viewRewards': 'Se belønningene mine',
+  'media.kicker': 'EVENTGALLERI', 'media.title': 'Få bildene dine',
+  'media.sub': 'Gjenopplev {event} i høy oppløsning — velg det du vil ha og hent det via WhatsApp.',
+  'media.back': '← Tilbake til {event}', 'media.buy': 'Kjøp via WhatsApp',
+  'media.typePack': 'Bildepakke', 'media.typeVideo': 'Video', 'media.typeSingle': 'Enkeltbilde',
+  'media.emptyTitle': 'Bilder kommer snart', 'media.emptyText': 'Kom tilbake etter festen — vi laster dem opp i løpet av noen dager.',
+  'media.loading': 'Laster…', 'media.cta': 'Få bildene dine',
 }
 
 const nl: Record<string, string> = {
@@ -503,6 +533,12 @@ const nl: Record<string, string> = {
   'family.alreadyTitle': 'Je bent al lid van de family 🎉', 'family.alreadyText': 'Elke boeking bevat al je {percent}% Family-korting, bovenop je loyaliteitsniveau.',
   'family.loginCta': 'Log in om lid te worden', 'family.loginSub': 'Maak een account aan of log in — het duurt 10 seconden.',
   'family.viewRewards': 'Bekijk mijn beloningen',
+  'media.kicker': 'EVENTGALERIJ', 'media.title': "Krijg je foto's",
+  'media.sub': "Herbeleef {event} in hoge resolutie — kies wat je wilt en haal het op via WhatsApp.",
+  'media.back': '← Terug naar {event}', 'media.buy': 'Kopen via WhatsApp',
+  'media.typePack': 'Fotopakket', 'media.typeVideo': 'Video', 'media.typeSingle': 'Losse foto',
+  'media.emptyTitle': "Foto's komen binnenkort", 'media.emptyText': 'Kom na het feest terug — we uploaden ze binnen enkele dagen.',
+  'media.loading': 'Laden…', 'media.cta': "Krijg je foto's",
 }
 
 export const TRANSLATIONS: Record<Lang, Record<string, string>> = { en, es, it, de, no, nl }

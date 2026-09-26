@@ -67,6 +67,9 @@ export default function EventsSection({ events, loading }: {
                       </Link>
                     )}
                   </div>
+                  <Link to={`/media/${e.slug}`} className="nav-link" style={{ fontSize: '.78rem', display: 'inline-block', marginTop: 10 }}>
+                    {t('media.cta')} →
+                  </Link>
                 </div>
               </article>
             )

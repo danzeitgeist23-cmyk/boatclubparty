@@ -40,6 +40,15 @@ export type DjRow = {
   is_active: boolean
 }
 
+export type MediaItemRow = {
+  id: string
+  event_id: string | null
+  type: 'photo_pack' | 'video' | 'single_photo'
+  title: string
+  preview_url: string | null
+  price: number
+}
+
 export type PostRow = {
   id: string
   slug: string
