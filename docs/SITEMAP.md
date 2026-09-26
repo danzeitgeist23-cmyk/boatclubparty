@@ -17,15 +17,15 @@
 | `/djs` | DjsPage | ✅ live | DJs activos con foto, tagline, Instagram/Mixcloud |
 | `/blog` | BlogPage | ✅ live | Estructura espejo de blog.html actual: categorías Todos/Destino/Música/Guías + estado vacío. Posts desde tabla `posts` |
 | `/blog/:slug` | PostPage | ✅ live | Artículo con markdown ligero + share WhatsApp |
-| `/gallery` | GalleryPage | 🔜 K | Fotos por evento + CTA "Get your photos" (hoy sección `#gallery` en home) |
-| `/media/:eventSlug` | EventMediaPage | 🔜 K | Venta fotos/vídeo: previews watermark + "Buy via WhatsApp" con mensaje prellenado |
-| `/family` | FamilyPage | 🔜 J | Landing Boat Club Family: perks, descuento permanente, CTA join |
+| `/gallery` | GalleryPage | 🔜 futuro | Fotos por evento + CTA "Get your photos" (hoy sección `#gallery` en home) |
+| `/media/:slug` | MediaPage | ✅ live (K) | Venta fotos/vídeo del evento (`media_items` por `event_id`): preview watermark (bucket `previews`), tipo, precio, "Buy via WhatsApp" con mensaje prellenado (mismo formato/emoji 🚤 del sitio). Estado vacío si no hay items. Enlazada desde cards de EventsSection ("Get your photos") y desde `/calendar` para eventos ya pasados |
+| `/family` | FamilyPage | ✅ live (J) | Landing propia (hero distinto al de home): qué es Family, % desde `settings.family_discount_percent`, beneficios (embarque prioritario, fiestas secretas, descuento permanente apilable). CTA de 3 estados: sin sesión → `/login?next=/family`, con sesión → join, ya family → mensaje + link a rewards |
 
 ## Cliente (Supabase Auth, rol `customer`)
 
 | Ruta | Página | Estado | Notas |
 |---|---|---|---|
-| `/login` | AuthPage | ✅ live (H) | Login + registro cliente (signUp con full_name → trigger crea profile). Con sesión redirige a /account |
+| `/login` | AuthPage | ✅ live (H, +J) | Login + registro cliente (signUp con full_name → trigger crea profile) + recuperar contraseña. Con sesión redirige a `?next=` si viene informado (usado por `/family`), si no a `/account` |
 | `/account` | AccountPage | ✅ live (H) | Mis datos + WhatsApp (update en `profiles`) |
 | `/account/bookings` | BookingsPage | ✅ live (H) | Mis reservas + estado (tickets `user_id = auth.uid()` con join a events) |
 | `/account/rewards` | RewardsPage | ✅ live (H) | Tier real desde DB, progreso al siguiente, % combinado (tope 25%), badge Family |
@@ -39,8 +39,8 @@
 | `/admin/events` | EventsPage | ✅ live | Listado + sold-out + delete |
 | `/admin/events/new` · `/admin/events/:id/edit` | EventFormPage | ✅ live | CRUD completo: barco/fiesta, fechas, precios, capacidad, géneros/BPM, cover, descripción y lineup de DJs (headliner/support) |
 | `/admin/djs` | DjsAdminPage | ✅ live | Alta/edición de DJs (foto, tagline, IG, Mixcloud) + mostrar/ocultar |
-| `/admin/customers` | CustomersPage | 🔜 H/J | Lista profiles + toggle Family + tier visible |
-| `/admin/media` | MediaAdminPage | 🔜 K | Upload a Storage (buckets `media`/`previews`), asignar evento, precio |
+| `/admin/customers` | CustomersPage | 🔜 futuro | Lista profiles + toggle Family + tier visible |
+| `/admin/media` | MediaAdminPage | ✅ live (K) | Upload a Storage (preview → bucket `previews` público, archivo completo → bucket `media` privado), asignar evento/tipo/precio, listado + delete |
 | `/admin/connectors` | ConnectorsPage | 🔜 L | Editor de `settings`: GA4, Google Ads, Meta Pixel, WhatsApp, Mixcloud, radios, % Family |
 | `/admin/docs` | DocsPage | 🔜 L/M | Render de `/docs/*.md` desde el propio bundle |
 

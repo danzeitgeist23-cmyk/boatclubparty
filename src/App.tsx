@@ -9,6 +9,7 @@ import MusicPage from './pages/public/MusicPage'
 import CalendarPage from './pages/public/CalendarPage'
 import ConnectorsPage from './pages/admin/ConnectorsPage'
 import MomentsAdminPage from './pages/admin/MomentsAdminPage'
+import MediaAdminPage from './pages/admin/MediaAdminPage'
 import MessagesAdminPage from './pages/admin/MessagesAdminPage'
 import HomePage from './pages/public/HomePage'
 import AuthPage from './pages/public/AuthPage'
@@ -88,6 +89,7 @@ export default function App() {
           <Route path="djs" element={<DjsAdminPage />} />
           <Route path="connectors" element={<ConnectorsPage />} />
           <Route path="moments" element={<MomentsAdminPage />} />
+          <Route path="media" element={<MediaAdminPage />} />
           <Route path="messages" element={<MessagesAdminPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
