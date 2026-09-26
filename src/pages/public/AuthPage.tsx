@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../hooks/useAuth'
 import { useT } from '../../i18n'
@@ -9,6 +9,8 @@ type Mode = 'login' | 'register' | 'forgot'
 export default function AuthPage() {
   const { session, loading } = useAuth()
   const { t } = useT()
+  const [params] = useSearchParams()
+  const next = params.get('next') || '/account'
   const [mode, setMode] = useState<Mode>('login')
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -18,7 +20,7 @@ export default function AuthPage() {
   const [confirmSent, setConfirmSent] = useState(false)
   const [resetSent, setResetSent] = useState(false)
 
-  if (!loading && session) return <Navigate to="/account" replace />
+  if (!loading && session) return <Navigate to={next} replace />
 
   async function submit(e: FormEvent) {
     e.preventDefault()

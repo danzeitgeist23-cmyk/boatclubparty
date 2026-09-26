@@ -11,6 +11,7 @@ const LINKS = [
   { tKey: 'nav.djs', path: '/djs' },
   { tKey: 'nav.music', path: '/music' },
   { tKey: 'nav.blog', path: '/blog' },
+  { tKey: 'nav.family', path: '/family' },
   { tKey: 'nav.contact', hash: '#contact' },
 ] as const
 

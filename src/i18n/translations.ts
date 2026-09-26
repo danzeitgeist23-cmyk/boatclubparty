@@ -71,6 +71,18 @@ const en: Record<string, string> = {
   'auth.forgot': 'Forgot your password?', 'auth.forgotSub': "No worries — we'll send you a reset link",
   'auth.forgotSend': 'SEND RESET LINK', 'auth.forgotSentText': "We sent a password reset link to {email}. Click it, set a new password, and you're back in.",
   'auth.resetTitle': 'SET A NEW PASSWORD', 'auth.resetNew': 'New password', 'auth.resetSave': 'SAVE PASSWORD', 'auth.resetOk': 'Password updated ⚓ Taking you in…',
+  'nav.family': 'Family', 'footer.family': 'Boat Club Family',
+  'family.kicker': 'BOAT CLUB FAMILY', 'family.title': 'Join the Family',
+  'family.sub': '{percent}% off every party, forever — stacks with your loyalty tier.',
+  'family.whatTitle': 'What is Family?',
+  'family.whatText': 'Boat Club Family is our permanent membership for the ones who keep coming back. One click, and every future booking carries your discount — no coupons, no conditions, just automatic savings that never expire.',
+  'family.b1t': 'Priority boarding', 'family.b1x': 'Skip the queue at the marina — Family members board first, every departure.',
+  'family.b2t': 'Secret parties', 'family.b2x': 'Invite-only departures announced exclusively to Family members, before anyone else.',
+  'family.b3t': 'Permanent discount', 'family.b3x': '{percent}% off, always on. It stacks with your Sailor/Captain/Legend tier — capped at 25% combined.',
+  'family.joinBtn': 'JOIN FAMILY', 'family.joining': 'JOINING…',
+  'family.alreadyTitle': "You're already in the family 🎉", 'family.alreadyText': 'Every booking already includes your {percent}% Family discount, on top of your loyalty tier.',
+  'family.loginCta': 'Sign in to join', 'family.loginSub': 'Create an account or sign in — it takes 10 seconds.',
+  'family.viewRewards': 'View my rewards',
 }
 
 const es: Record<string, string> = {
@@ -143,6 +155,18 @@ const es: Record<string, string> = {
   'auth.forgot': '¿Olvidaste tu contraseña?', 'auth.forgotSub': 'Tranquilo — te enviamos un enlace para restablecerla',
   'auth.forgotSend': 'ENVIAR ENLACE', 'auth.forgotSentText': 'Hemos enviado un enlace para restablecer tu contraseña a {email}. Haz clic, elige una nueva y listo.',
   'auth.resetTitle': 'ESTABLECE UNA NUEVA CONTRASEÑA', 'auth.resetNew': 'Nueva contraseña', 'auth.resetSave': 'GUARDAR CONTRASEÑA', 'auth.resetOk': 'Contraseña actualizada ⚓ Entrando…',
+  'nav.family': 'Family', 'footer.family': 'Boat Club Family',
+  'family.kicker': 'BOAT CLUB FAMILY', 'family.title': 'Únete a la Family',
+  'family.sub': '{percent}% de descuento en cada fiesta, para siempre — se combina con tu tier.',
+  'family.whatTitle': '¿Qué es Family?',
+  'family.whatText': 'Boat Club Family es nuestra membresía permanente para quienes siempre vuelven. Un clic, y cada reserva futura lleva tu descuento — sin cupones, sin condiciones, ahorro automático que nunca caduca.',
+  'family.b1t': 'Embarque prioritario', 'family.b1x': 'Sáltate la cola en el puerto — los socios Family embarcan primero, en cada salida.',
+  'family.b2t': 'Fiestas secretas', 'family.b2x': 'Salidas solo por invitación, anunciadas en exclusiva a los socios Family antes que a nadie.',
+  'family.b3t': 'Descuento permanente', 'family.b3x': '{percent}% siempre activo. Se combina con tu tier Sailor/Captain/Legend — tope combinado del 25%.',
+  'family.joinBtn': 'UNIRSE A FAMILY', 'family.joining': 'UNIÉNDOTE…',
+  'family.alreadyTitle': 'Ya eres parte de la family 🎉', 'family.alreadyText': 'Cada reserva ya incluye tu {percent}% de descuento Family, sumado a tu tier de fidelidad.',
+  'family.loginCta': 'Inicia sesión para unirte', 'family.loginSub': 'Crea una cuenta o inicia sesión — tarda 10 segundos.',
+  'family.viewRewards': 'Ver mis recompensas',
 }
 
 const it: Record<string, string> = {
@@ -215,6 +239,18 @@ const it: Record<string, string> = {
   'auth.forgot': 'Password dimenticata?', 'auth.forgotSub': "Nessun problema — ti mandiamo un link per reimpostarla",
   'auth.forgotSend': 'INVIA IL LINK', 'auth.forgotSentText': 'Abbiamo inviato un link per reimpostare la password a {email}. Cliccalo, scegline una nuova ed è fatta.',
   'auth.resetTitle': 'IMPOSTA UNA NUOVA PASSWORD', 'auth.resetNew': 'Nuova password', 'auth.resetSave': 'SALVA PASSWORD', 'auth.resetOk': 'Password aggiornata ⚓ Ti stiamo facendo accedere…',
+  'nav.family': 'Family', 'footer.family': 'Boat Club Family',
+  'family.kicker': 'BOAT CLUB FAMILY', 'family.title': 'Unisciti alla Family',
+  'family.sub': '{percent}% di sconto su ogni festa, per sempre — si somma al tuo tier.',
+  'family.whatTitle': "Cos'è Family?",
+  'family.whatText': "Boat Club Family è la nostra membership permanente per chi torna sempre. Un clic, e ogni prenotazione futura porta il tuo sconto — niente coupon, niente condizioni, risparmio automatico che non scade mai.",
+  'family.b1t': 'Imbarco prioritario', 'family.b1x': 'Salta la fila al porto — i membri Family salgono a bordo per primi, ad ogni partenza.',
+  'family.b2t': 'Feste segrete', 'family.b2x': 'Partenze solo su invito, annunciate in esclusiva ai membri Family prima di chiunque altro.',
+  'family.b3t': 'Sconto permanente', 'family.b3x': '{percent}% sempre attivo. Si somma al tuo tier Sailor/Captain/Legend — tetto combinato del 25%.',
+  'family.joinBtn': 'UNISCITI A FAMILY', 'family.joining': 'ISCRIZIONE…',
+  'family.alreadyTitle': 'Fai già parte della family 🎉', 'family.alreadyText': 'Ogni prenotazione include già il tuo sconto Family del {percent}%, sommato al tuo tier di fedeltà.',
+  'family.loginCta': 'Accedi per unirti', 'family.loginSub': 'Crea un account o accedi — bastano 10 secondi.',
+  'family.viewRewards': 'Vedi i miei premi',
 }
 
 const de: Record<string, string> = {
@@ -287,6 +323,18 @@ const de: Record<string, string> = {
   'auth.forgot': 'Passwort vergessen?', 'auth.forgotSub': 'Kein Problem — wir schicken dir einen Link zum Zurücksetzen',
   'auth.forgotSend': 'LINK SENDEN', 'auth.forgotSentText': 'Wir haben einen Link zum Zurücksetzen des Passworts an {email} gesendet. Klick ihn an, wähle ein neues Passwort und du bist wieder drin.',
   'auth.resetTitle': 'NEUES PASSWORT FESTLEGEN', 'auth.resetNew': 'Neues Passwort', 'auth.resetSave': 'PASSWORT SPEICHERN', 'auth.resetOk': 'Passwort aktualisiert ⚓ Du wirst angemeldet…',
+  'nav.family': 'Family', 'footer.family': 'Boat Club Family',
+  'family.kicker': 'BOAT CLUB FAMILY', 'family.title': 'Der Family beitreten',
+  'family.sub': '{percent}% Rabatt auf jede Party, für immer — kombinierbar mit deiner Treuestufe.',
+  'family.whatTitle': 'Was ist Family?',
+  'family.whatText': 'Boat Club Family ist unsere dauerhafte Mitgliedschaft für alle, die immer wiederkommen. Ein Klick, und jede zukünftige Buchung trägt deinen Rabatt — keine Gutscheine, keine Bedingungen, automatische Ersparnis, die nie abläuft.',
+  'family.b1t': 'Priority Boarding', 'family.b1x': 'Überspringe die Schlange am Hafen — Family-Mitglieder gehen bei jeder Abfahrt zuerst an Bord.',
+  'family.b2t': 'Geheime Partys', 'family.b2x': 'Nur auf Einladung — Abfahrten werden exklusiv und vor allen anderen an Family-Mitglieder angekündigt.',
+  'family.b3t': 'Dauerhafter Rabatt', 'family.b3x': '{percent}% immer aktiv. Kombinierbar mit deiner Sailor/Captain/Legend-Stufe — kombiniertes Limit von 25%.',
+  'family.joinBtn': 'FAMILY BEITRETEN', 'family.joining': 'TRITT BEI…',
+  'family.alreadyTitle': 'Du bist schon Teil der Family 🎉', 'family.alreadyText': 'Jede Buchung enthält bereits deinen {percent}% Family-Rabatt, zusätzlich zu deiner Treuestufe.',
+  'family.loginCta': 'Zum Beitreten anmelden', 'family.loginSub': 'Erstelle ein Konto oder melde dich an — dauert 10 Sekunden.',
+  'family.viewRewards': 'Meine Prämien ansehen',
 }
 
 const no: Record<string, string> = {
@@ -359,6 +407,18 @@ const no: Record<string, string> = {
   'auth.forgot': 'Glemt passordet?', 'auth.forgotSub': 'Ingen krise — vi sender deg en lenke for å nullstille det',
   'auth.forgotSend': 'SEND LENKE', 'auth.forgotSentText': 'Vi sendte en lenke for å nullstille passordet til {email}. Klikk på den, velg et nytt, og du er inne igjen.',
   'auth.resetTitle': 'VELG NYTT PASSORD', 'auth.resetNew': 'Nytt passord', 'auth.resetSave': 'LAGRE PASSORD', 'auth.resetOk': 'Passord oppdatert ⚓ Logger deg inn…',
+  'nav.family': 'Family', 'footer.family': 'Boat Club Family',
+  'family.kicker': 'BOAT CLUB FAMILY', 'family.title': 'Bli med i Family',
+  'family.sub': '{percent}% rabatt på hver fest, for alltid — kombineres med lojalitetsnivået ditt.',
+  'family.whatTitle': 'Hva er Family?',
+  'family.whatText': 'Boat Club Family er vårt permanente medlemskap for de som alltid kommer tilbake. Ett klikk, og hver fremtidige bestilling har rabatten din — ingen kuponger, ingen betingelser, automatisk besparelse som aldri utløper.',
+  'family.b1t': 'Prioritert ombordstigning', 'family.b1x': 'Hopp over køen på marinaen — Family-medlemmer går om bord først, hver avgang.',
+  'family.b2t': 'Hemmelige fester', 'family.b2x': 'Avganger kun på invitasjon, annonsert eksklusivt til Family-medlemmer før alle andre.',
+  'family.b3t': 'Permanent rabatt', 'family.b3x': '{percent}% alltid aktiv. Kombineres med Sailor/Captain/Legend-nivået ditt — kombinert tak på 25%.',
+  'family.joinBtn': 'BLI MED I FAMILY', 'family.joining': 'BLIR MED…',
+  'family.alreadyTitle': 'Du er allerede en del av family 🎉', 'family.alreadyText': 'Hver bestilling inkluderer allerede din {percent}% Family-rabatt, i tillegg til lojalitetsnivået ditt.',
+  'family.loginCta': 'Logg inn for å bli med', 'family.loginSub': 'Opprett en konto eller logg inn — tar 10 sekunder.',
+  'family.viewRewards': 'Se belønningene mine',
 }
 
 const nl: Record<string, string> = {
@@ -431,6 +491,18 @@ const nl: Record<string, string> = {
   'auth.forgot': 'Wachtwoord vergeten?', 'auth.forgotSub': 'Geen zorgen — we sturen je een link om het opnieuw in te stellen',
   'auth.forgotSend': 'LINK VERSTUREN', 'auth.forgotSentText': 'We hebben een link om je wachtwoord opnieuw in te stellen gestuurd naar {email}. Klik erop, kies een nieuw wachtwoord en je bent weer binnen.',
   'auth.resetTitle': 'NIEUW WACHTWOORD INSTELLEN', 'auth.resetNew': 'Nieuw wachtwoord', 'auth.resetSave': 'WACHTWOORD OPSLAAN', 'auth.resetOk': 'Wachtwoord bijgewerkt ⚓ Je wordt ingelogd…',
+  'nav.family': 'Family', 'footer.family': 'Boat Club Family',
+  'family.kicker': 'BOAT CLUB FAMILY', 'family.title': 'Word lid van Family',
+  'family.sub': '{percent}% korting op elk feest, voor altijd — combineert met je loyaliteitsniveau.',
+  'family.whatTitle': 'Wat is Family?',
+  'family.whatText': 'Boat Club Family is ons permanente lidmaatschap voor wie altijd terugkomt. Eén klik, en elke toekomstige boeking heeft je korting — geen coupons, geen voorwaarden, automatische besparing die nooit verloopt.',
+  'family.b1t': 'Priority boarding', 'family.b1x': 'Sla de rij bij de marina over — Family-leden gaan bij elke afvaart als eerste aan boord.',
+  'family.b2t': 'Geheime feesten', 'family.b2x': 'Afvaarten alleen op uitnodiging, exclusief aangekondigd aan Family-leden vóór iedereen.',
+  'family.b3t': 'Permanente korting', 'family.b3x': '{percent}% altijd actief. Combineert met je Sailor/Captain/Legend-niveau — gecombineerd maximum van 25%.',
+  'family.joinBtn': 'WORD LID VAN FAMILY', 'family.joining': 'AANMELDEN…',
+  'family.alreadyTitle': 'Je bent al lid van de family 🎉', 'family.alreadyText': 'Elke boeking bevat al je {percent}% Family-korting, bovenop je loyaliteitsniveau.',
+  'family.loginCta': 'Log in om lid te worden', 'family.loginSub': 'Maak een account aan of log in — het duurt 10 seconden.',
+  'family.viewRewards': 'Bekijk mijn beloningen',
 }
 
 export const TRANSLATIONS: Record<Lang, Record<string, string>> = { en, es, it, de, no, nl }

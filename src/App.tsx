@@ -16,6 +16,7 @@ import EventPage from './pages/public/EventPage'
 import DjsPage from './pages/public/DjsPage'
 import BlogPage from './pages/public/BlogPage'
 import PostPage from './pages/public/PostPage'
+import FamilyPage from './pages/public/FamilyPage'
 import LoginPage from './pages/admin/LoginPage'
 import AdminLayout from './pages/admin/AdminLayout'
 import DashboardPage from './pages/admin/DashboardPage'
@@ -63,6 +64,7 @@ export default function App() {
         <Route path="/djs" element={<DjsPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<PostPage />} />
+        <Route path="/family" element={<FamilyPage />} />
         <Route path="/login" element={<AuthPage />} />
 
         <Route path="/account" element={<AccountLayout />}>

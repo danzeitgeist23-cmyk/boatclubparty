@@ -54,6 +54,7 @@ export default function Footer() {
           <p className="bebas" style={{ letterSpacing: '.1em', margin: '0 0 12px' }}>{t('footer.company')}</p>
           <ul className="footer-list">
             <li><Link to="/blog" className="nav-link">{t('footer.blog')}</Link></li>
+            <li><Link to="/family" className="nav-link">{t('footer.family')}</Link></li>
             <li><Link to="/login" className="nav-link">{t('footer.account')}</Link></li>
             <li><a href="/#/" className="nav-link">{t('footer.contact')}</a></li>
           </ul>
