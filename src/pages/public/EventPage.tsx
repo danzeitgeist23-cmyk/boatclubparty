@@ -10,6 +10,7 @@ import WhatsAppFloat from '../../components/home/WhatsAppFloat'
 import ShareButtons from '../../components/ShareButtons'
 import BookingForm from '../../components/BookingForm'
 import Img from '../../components/Img'
+import PromoVideo from '../../components/PromoVideo'
 import { useT } from '../../i18n'
 
 type EventWithLineup = EventRow & {
@@ -77,8 +78,11 @@ export default function EventPage() {
         <Link to="/" className="nav-link" style={{ fontSize: '.85rem' }}>{t('event.all')}</Link>
 
         <div className="event-detail-grid" style={{ marginTop: 18 }}>
-          <div style={{ borderRadius: 12, overflow: 'hidden' }}>
-            <Img src={event.cover_image} alt={event.boat_name} ratio="4/5" />
+          <div>
+            {event.promo_video_url && <PromoVideo src={event.promo_video_url} />}
+            <div style={{ borderRadius: 12, overflow: 'hidden' }}>
+              <Img src={event.cover_image} alt={event.boat_name} ratio="4/5" />
+            </div>
           </div>
 
           <div>
