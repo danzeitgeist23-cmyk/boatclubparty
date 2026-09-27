@@ -49,10 +49,10 @@ export default function Countdown({ events }: { events: EventRow[] }) {
 
   const { d, h, m, s } = split(eventStartMs(next) - now)
   const boxes = [
-    { v: d, label: 'DAYS' },
-    { v: h, label: 'HOURS' },
-    { v: m, label: 'MIN' },
-    { v: s, label: 'SEC' },
+    { v: d, label: t('countdown.days') },
+    { v: h, label: t('countdown.hours') },
+    { v: m, label: t('countdown.min') },
+    { v: s, label: t('countdown.sec') },
   ]
 
   return (
