@@ -12,6 +12,8 @@ import BookingForm from '../../components/BookingForm'
 import Img from '../../components/Img'
 import PromoVideo from '../../components/PromoVideo'
 import { useT } from '../../i18n'
+import { useDocumentHead } from '../../hooks/useDocumentHead'
+import { localizedEventText } from '../../lib/eventContent'
 
 type EventWithLineup = EventRow & {
   event_djs: { role: 'headliner' | 'support'; sort: number; djs: DjRow | null }[]
@@ -20,7 +22,7 @@ type EventWithLineup = EventRow & {
 export default function EventPage() {
   const { slug } = useParams()
   const settings = useSettings()
-  const { t } = useT()
+  const { t, lang } = useT()
   const { session, profile } = useAuth()
   const [event, setEvent] = useState<EventWithLineup | null | undefined>(undefined)
   const [tiers, setTiers] = useState<Tier[]>([])
@@ -51,6 +53,15 @@ export default function EventPage() {
     return totalDiscountPercent(tier?.percent ?? 0, familyPercent)
   }, [profile, tiers, settings.family_discount_percent])
 
+  // SEO: hay que llamar el hook siempre (reglas de hooks), incluso mientras
+  // event está undefined/null — con valores por defecto hasta que cargue.
+  const localized = event ? localizedEventText(event, lang) : null
+  const seoTitle = event
+    ? `${event.boat_name} — ${t('event.tagline')} | ${new Date(`${event.date}T00:00:00`).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })} · Boat Club Party`
+    : 'Boat Club Party'
+  const seoDescription = localized?.description.split('\n\n')[0].slice(0, 160)
+  useDocumentHead({ title: seoTitle, description: seoDescription, image: event?.cover_image ?? undefined, type: 'event' })
+
   if (event === undefined) return <div style={{ minHeight: '100vh' }}><Nav /><p className="text-muted-c" style={{ padding: 40, textAlign: 'center' }}>{t('event.loading')}</p></div>
   if (event === null) {
     return (
@@ -70,6 +81,7 @@ export default function EventPage() {
   const lineup = [...event.event_djs].sort((a, b) => a.sort - b.sort)
   const tierLabel = profile ? activeTier(tiers, profile.bookings_count)?.label : null
   const discountLabel = tierLabel ? `${tierLabel}${profile?.is_family ? ' + Family' : ''} −${discount}%` : undefined
+  const { description, marina } = localizedEventText(event, lang)
 
   return (
     <div style={{ minHeight: '100vh' }}>
@@ -88,13 +100,16 @@ export default function EventPage() {
           <div>
             {soldOut && <span className="badge-live" style={{ position: 'static', display: 'inline-block', marginBottom: 12 }}>{t('events.soldout')}</span>}
             <p style={{ color: 'var(--gold)', letterSpacing: '.22em', fontSize: '.75rem', margin: 0 }}>
-              {event.date} · {event.time_start.slice(0, 5)}–{event.time_end.slice(0, 5)} · {event.marina}
+              {event.date} · {event.time_start.slice(0, 5)}–{event.time_end.slice(0, 5)} · {marina}
             </p>
-            <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 7vw, 4rem)', margin: '8px 0 10px', lineHeight: .95 }}>
+            <h1 className="bebas" style={{ fontSize: 'clamp(2.6rem, 7vw, 4rem)', margin: '8px 0 4px', lineHeight: .95 }}>
               {event.boat_name}
             </h1>
-            <p className="text-muted-c" style={{ margin: '0 0 18px', lineHeight: 1.6 }}>
-              {event.description ?? t('events.fallbackDesc')}
+            <p className="text-muted-c" style={{ margin: '0 0 14px', fontSize: '1rem', letterSpacing: '.02em' }}>
+              {t('event.tagline')}
+            </p>
+            <p className="text-muted-c" style={{ margin: '0 0 18px', lineHeight: 1.6, whiteSpace: 'pre-line' }}>
+              {description ?? t('events.fallbackDesc')}
             </p>
 
             {(event.event_type || event.genres || event.bpm) && (

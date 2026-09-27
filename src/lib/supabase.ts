@@ -27,6 +27,9 @@ export type EventRow = {
   bpm: string | null
   event_type: string | null
   promo_video_url: string | null
+  // contenido traducido opcional por idioma; null/idioma ausente -> fallback a
+  // description/marina (inglés). Ver src/lib/eventContent.ts
+  content_i18n: Partial<Record<string, { description?: string; marina?: string }>> | null
 }
 
 export type DjRow = {
