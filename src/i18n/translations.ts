@@ -89,6 +89,8 @@ const en: Record<string, string> = {
   'media.typePack': 'Photo Pack', 'media.typeVideo': 'Video', 'media.typeSingle': 'Single Photo',
   'media.emptyTitle': 'Photos coming soon', 'media.emptyText': 'Check back after the party — we upload them within a few days.',
   'media.loading': 'Loading…', 'media.cta': 'Get your photos',
+  'past.kicker': 'RELIVE THE PARTY', 'past.title': 'Past Parties',
+  'past.sub': "Missed it or want your photos? Here's every party with pics ready to go.",
 }
 
 const es: Record<string, string> = {
@@ -179,6 +181,8 @@ const es: Record<string, string> = {
   'media.typePack': 'Pack de fotos', 'media.typeVideo': 'Vídeo', 'media.typeSingle': 'Foto individual',
   'media.emptyTitle': 'Fotos muy pronto', 'media.emptyText': 'Vuelve después de la fiesta — las subimos en pocos días.',
   'media.loading': 'Cargando…', 'media.cta': 'Consigue tus fotos',
+  'past.kicker': 'REVIVE LA FIESTA', 'past.title': 'Fiestas pasadas',
+  'past.sub': '¿Te la perdiste o quieres tus fotos? Aquí tienes cada fiesta con fotos ya disponibles.',
 }
 
 const it: Record<string, string> = {
@@ -269,6 +273,8 @@ const it: Record<string, string> = {
   'media.typePack': 'Pacchetto foto', 'media.typeVideo': 'Video', 'media.typeSingle': 'Foto singola',
   'media.emptyTitle': 'Foto in arrivo', 'media.emptyText': 'Torna dopo la festa — le carichiamo entro pochi giorni.',
   'media.loading': 'Caricamento…', 'media.cta': 'Ottieni le tue foto',
+  'past.kicker': 'RIVIVI LA FESTA', 'past.title': 'Feste passate',
+  'past.sub': "Te la sei persa o vuoi le tue foto? Ecco ogni festa con le foto già pronte.",
 }
 
 const de: Record<string, string> = {
@@ -359,6 +365,8 @@ const de: Record<string, string> = {
   'media.typePack': 'Foto-Paket', 'media.typeVideo': 'Video', 'media.typeSingle': 'Einzelfoto',
   'media.emptyTitle': 'Fotos kommen bald', 'media.emptyText': 'Schau nach der Party wieder vorbei — wir laden sie innerhalb weniger Tage hoch.',
   'media.loading': 'Wird geladen…', 'media.cta': 'Hol dir deine Fotos',
+  'past.kicker': 'ERLEBE DIE PARTY NOCH EINMAL', 'past.title': 'Vergangene Partys',
+  'past.sub': 'Verpasst oder willst du deine Fotos? Hier sind alle Partys mit bereits verfügbaren Fotos.',
 }
 
 const no: Record<string, string> = {
@@ -449,6 +457,8 @@ const no: Record<string, string> = {
   'media.typePack': 'Bildepakke', 'media.typeVideo': 'Video', 'media.typeSingle': 'Enkeltbilde',
   'media.emptyTitle': 'Bilder kommer snart', 'media.emptyText': 'Kom tilbake etter festen — vi laster dem opp i løpet av noen dager.',
   'media.loading': 'Laster…', 'media.cta': 'Få bildene dine',
+  'past.kicker': 'OPPLEV FESTEN PÅ NYTT', 'past.title': 'Tidligere fester',
+  'past.sub': 'Gikk du glipp av den, eller vil du ha bildene dine? Her er hver fest med bilder klare.',
 }
 
 const nl: Record<string, string> = {
@@ -539,6 +549,8 @@ const nl: Record<string, string> = {
   'media.typePack': 'Fotopakket', 'media.typeVideo': 'Video', 'media.typeSingle': 'Losse foto',
   'media.emptyTitle': "Foto's komen binnenkort", 'media.emptyText': 'Kom na het feest terug — we uploaden ze binnen enkele dagen.',
   'media.loading': 'Laden…', 'media.cta': "Krijg je foto's",
+  'past.kicker': 'BELEEF HET FEEST OPNIEUW', 'past.title': 'Eerdere feesten',
+  'past.sub': "Gemist of wil je je foto's? Hier is elk feest met foto's die al klaarstaan.",
 }
 
 export const TRANSLATIONS: Record<Lang, Record<string, string>> = { en, es, it, de, no, nl }

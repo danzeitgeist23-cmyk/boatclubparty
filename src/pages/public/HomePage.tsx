@@ -5,6 +5,7 @@ import Hero from '../../components/home/Hero'
 import Countdown from '../../components/home/Countdown'
 import EventsSection from '../../components/home/EventsSection'
 import GallerySection from '../../components/home/GallerySection'
+import PastParties from '../../components/home/PastParties'
 import FamilyMoments from '../../components/home/FamilyMoments'
 import WhyUs from '../../components/home/WhyUs'
 import Reviews from '../../components/home/Reviews'
@@ -27,6 +28,7 @@ export default function HomePage() {
         <Countdown events={events} />
         <EventsSection events={events} loading={loading} />
         <GallerySection />
+        <PastParties />
         <FamilyMoments />
         <WhyUs />
         <Reviews />
