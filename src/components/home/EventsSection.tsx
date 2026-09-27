@@ -3,6 +3,7 @@ import type { EventRow } from '../../lib/supabase'
 import Img from '../Img'
 import Price from '../Price'
 import { useT } from '../../i18n'
+import { localizedEventText } from '../../lib/eventContent'
 
 function durationHours(e: EventRow): number {
   const [h1, m1] = e.time_start.split(':').map(Number)
@@ -10,11 +11,21 @@ function durationHours(e: EventRow): number {
   return Math.max(0, Math.round((h2 * 60 + m2 - h1 * 60 - m1) / 60))
 }
 
+// Resumen corto para la card de home — la ficha del evento sí muestra el
+// texto completo. Solo el primer párrafo, cortado por palabra.
+function summarize(text: string, max = 100): string {
+  const firstPara = text.split('\n\n')[0].trim()
+  if (firstPara.length <= max) return firstPara
+  const cut = firstPara.slice(0, max)
+  const lastSpace = cut.lastIndexOf(' ')
+  return `${cut.slice(0, lastSpace > 0 ? lastSpace : max)}…`
+}
+
 export default function EventsSection({ events, loading }: {
   events: EventRow[]
   loading: boolean
 }) {
-  const { t } = useT()
+  const { t, lang } = useT()
   return (
     <section id="events" style={{ maxWidth: 1200, margin: '0 auto', padding: '70px 20px' }}>
       <p style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: '.75rem', margin: '0 0 6px' }}>{t('events.kicker')}</p>
@@ -32,6 +43,7 @@ export default function EventsSection({ events, loading }: {
         <div style={{ display: 'grid', gap: 24, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
           {events.map(e => {
             const soldOut = e.status === 'sold_out'
+            const description = localizedEventText(e, lang).description ?? t('events.fallbackDesc')
             return (
               <article key={e.id} className="event-card">
                 <Link to={`/events/${e.slug}`} style={{ display: 'block', position: 'relative' }}>
@@ -51,7 +63,7 @@ export default function EventsSection({ events, loading }: {
                     <Link to={`/events/${e.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{e.boat_name}</Link>
                   </h3>
                   <p className="text-muted-c" style={{ fontSize: '.85rem', margin: '0 0 10px' }}>
-                    {e.description ?? t('events.fallbackDesc')}
+                    {summarize(description)}
                   </p>
                   <p style={{ fontSize: '.82rem', margin: '0 0 14px' }}>
                     <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{e.time_start.slice(0, 5)}–{e.time_end.slice(0, 5)}</span>
