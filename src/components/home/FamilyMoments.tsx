@@ -12,7 +12,7 @@ export default function FamilyMoments() {
   const { t } = useT()
 
   useEffect(() => {
-    supabase.from('moments').select('id,image_url,caption').order('sort')
+    supabase.from('moments').select('id,image_url,caption').eq('active', true).order('sort')
       .then(({ data }) => setMoments((data as Moment[]) ?? []))
   }, [])
 

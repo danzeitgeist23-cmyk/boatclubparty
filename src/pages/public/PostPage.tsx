@@ -30,7 +30,7 @@ export default function PostPage() {
 
   useEffect(() => {
     if (!slug) return
-    supabase.from('posts').select('*').eq('slug', slug).single()
+    supabase.from('posts').select('*').eq('slug', slug).eq('published', true).single()
       .then(({ data }) => setPost((data as PostRow) ?? null))
   }, [slug])
 

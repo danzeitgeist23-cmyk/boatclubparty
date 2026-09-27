@@ -28,7 +28,7 @@ export default function MusicPage() {
   const [djs, setDjs] = useState<DjRow[]>([])
 
   useEffect(() => {
-    supabase.from('djs').select('*').not('mixcloud', 'is', null)
+    supabase.from('djs').select('*').eq('is_active', true).not('mixcloud', 'is', null)
       .then(({ data }) => setDjs((data as DjRow[]) ?? []))
   }, [])
 

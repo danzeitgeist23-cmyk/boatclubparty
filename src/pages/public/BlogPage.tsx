@@ -23,7 +23,7 @@ export default function BlogPage() {
   const { t } = useT()
 
   useEffect(() => {
-    supabase.from('posts').select('*').order('created_at', { ascending: false })
+    supabase.from('posts').select('*').eq('published', true).order('created_at', { ascending: false })
       .then(({ data }) => setPosts((data as PostRow[]) ?? []))
   }, [])
 
