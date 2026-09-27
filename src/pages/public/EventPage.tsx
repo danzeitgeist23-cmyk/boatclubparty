@@ -23,6 +23,7 @@ export default function EventPage() {
   const { session, profile } = useAuth()
   const [event, setEvent] = useState<EventWithLineup | null | undefined>(undefined)
   const [tiers, setTiers] = useState<Tier[]>([])
+  const [mediaCount, setMediaCount] = useState(0)
 
   useEffect(() => {
     if (!slug) return
@@ -35,6 +36,12 @@ export default function EventPage() {
     supabase.from('discount_tiers').select('*').order('min_bookings')
       .then(({ data }) => setTiers((data as Tier[]) ?? []))
   }, [slug])
+
+  useEffect(() => {
+    if (!event) return
+    supabase.from('media_items').select('id', { count: 'exact', head: true }).eq('event_id', event.id)
+      .then(({ count }) => setMediaCount(count ?? 0))
+  }, [event])
 
   const discount = useMemo(() => {
     if (!profile) return 0
@@ -144,7 +151,14 @@ export default function EventPage() {
               )}
             </div>
 
-            <ShareButtons title={`${event.boat_name} · ${event.date} · Boat Club Party`} />
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
+              {mediaCount > 0 && (
+                <Link className="btn-outline" style={{ padding: '8px 16px', fontSize: '.85rem' }} to={`/media/${event.slug}`}>
+                  {t('media.cta')}
+                </Link>
+              )}
+              <ShareButtons title={`${event.boat_name} · ${event.date} · Boat Club Party`} />
+            </div>
           </div>
         </div>
       </main>
